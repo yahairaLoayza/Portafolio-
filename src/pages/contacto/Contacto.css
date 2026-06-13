@@ -1,0 +1,2414 @@
+.contact-page {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding: 2rem 4.8vw 2.4rem;
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 22% 12%, rgba(158, 100, 255, 0.17), transparent 26rem),
+    radial-gradient(circle at 70% 30%, rgba(195, 140, 255, 0.12), transparent 30rem),
+    linear-gradient(125deg, #061024 0%, #08142d 52%, #f3effb 52.2%, #f7f4fc 100%);
+}
+
+.contact-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, transparent 0 47%, rgba(255, 255, 255, 0.05) 47.4% 48.7%, transparent 49%),
+    radial-gradient(circle at 90% 0%, rgba(255, 255, 255, 0.08), transparent 20rem);
+}
+
+.contact-ambient {
+  position: absolute;
+  z-index: 0;
+  border-radius: 999px;
+  filter: blur(18px);
+  pointer-events: none;
+  animation: contactAmbient 7s ease-in-out infinite;
+}
+
+.contact-ambient.one {
+  left: 38%;
+  top: 14rem;
+  width: 17rem;
+  height: 17rem;
+  background: rgba(179, 114, 255, 0.2);
+}
+
+.contact-ambient.two {
+  right: 14%;
+  bottom: 8rem;
+  width: 18rem;
+  height: 18rem;
+  background: rgba(205, 154, 255, 0.14);
+  animation-delay: 1.2s;
+}
+
+@keyframes contactAmbient {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+
+.contact-dot-pattern {
+  position: absolute;
+  z-index: 1;
+  right: 8vw;
+  top: 5.5rem;
+  width: 6.6rem;
+  height: 6.6rem;
+  opacity: 0.82;
+  background-image: radial-gradient(circle, rgba(166, 101, 255, 0.8) 1.5px, transparent 1.9px);
+  background-size: 12px 12px;
+  animation: contactDotFloat 5s ease-in-out infinite;
+}
+
+@keyframes contactDotFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.contact-corner-plant {
+  position: absolute;
+  top: -1rem;
+  right: -0.6rem;
+  z-index: 8;
+  width: 8.8rem;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.24));
+  pointer-events: none;
+}
+
+/* HEADER */
+.contact-header {
+  position: relative;
+  z-index: 10;
+  width: min(1450px, calc(100% - 1rem));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 2rem;
+}
+
+.contact-logo-link {
+  width: 3.6rem;
+  height: 3.6rem;
+  display: grid;
+  place-items: center;
+}
+
+.contact-logo {
+  width: 3.05rem;
+  height: 3.05rem;
+  object-fit: contain;
+  filter: drop-shadow(0 0 14px rgba(194, 136, 255, 0.45));
+  animation: contactLogoFloat 3.5s ease-in-out infinite;
+}
+
+@keyframes contactLogoFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.contact-navbar {
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  gap: clamp(1.4rem, 2.8vw, 3.2rem);
+}
+
+.contact-navbar a {
+  position: relative;
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.74rem;
+  font-weight: 850;
+  letter-spacing: 0.26em;
+  transition: color 0.3s ease;
+}
+
+.contact-navbar a:hover,
+.contact-navbar a.active {
+  color: #ffffff;
+}
+
+.contact-navbar a.active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -1rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: #ba82ff;
+  box-shadow: 0 0 18px rgba(186, 130, 255, 0.9);
+  transform: translateX(-50%);
+}
+
+.contact-top-status {
+  min-width: 17rem;
+  height: 2.9rem;
+  padding: 0 1.15rem;
+  border: 1px solid rgba(220, 206, 255, 0.22);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  background:
+    linear-gradient(135deg, rgba(184, 130, 255, 0.19), rgba(255, 255, 255, 0.08)),
+    rgba(13, 20, 40, 0.38);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.14);
+  backdrop-filter: blur(14px);
+}
+
+.contact-top-status span {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: #54ef98;
+  box-shadow: 0 0 16px rgba(84, 239, 152, 0.75);
+}
+
+/* SIDE DOCK */
+.contact-side-dock {
+  position: fixed;
+  left: 2rem;
+  top: 50%;
+  z-index: 20;
+  width: 4.65rem;
+  min-height: 22.5rem;
+  padding: 2rem 0;
+  border: 1px solid rgba(185, 193, 222, 0.22);
+  border-radius: 999px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.55rem;
+  background: rgba(8, 14, 31, 0.62);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 22px 52px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(22px);
+  transform: translateY(-50%);
+}
+
+.contact-dock-line {
+  width: 2px;
+  height: 1.6rem;
+  border-radius: 999px;
+  background: linear-gradient(to bottom, transparent, #bb82ff);
+}
+
+.contact-dock-line.bottom {
+  background: linear-gradient(to top, transparent, #bb82ff);
+}
+
+.contact-dock-item {
+  width: 2.85rem;
+  height: 2.85rem;
+  border-radius: 1rem;
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.82);
+  text-decoration: none;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.contact-dock-item:hover,
+.contact-dock-item.is-active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #9d68ff, #c78eff);
+  box-shadow: 0 0 24px rgba(185, 130, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* LAYOUT */
+.contact-hero-layout {
+  position: relative;
+  z-index: 5;
+  width: min(1450px, calc(100% - 5rem));
+  margin: 2.8rem auto 0;
+  display: grid;
+  grid-template-columns: minmax(26rem, 0.95fr) minmax(25rem, 0.9fr) minmax(28rem, 1fr);
+  gap: 1.6rem;
+  align-items: center;
+}
+
+/* LEFT */
+.contact-copy {
+  animation: contactFadeUp 0.8s ease both;
+}
+
+.contact-kicker {
+  margin: 0 0 1.3rem;
+  color: rgba(230, 220, 255, 0.9);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+}
+
+.contact-script {
+  margin: 0 0 -0.65rem;
+  color: #c98eff;
+  font-family: 'Brush Script MT', 'Segoe Script', cursive;
+  font-size: clamp(3.8rem, 5.2vw, 5.8rem);
+  line-height: 0.9;
+  filter: drop-shadow(0 0 18px rgba(201, 142, 255, 0.3));
+}
+
+.contact-copy h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(4rem, 5.3vw, 6.1rem);
+  line-height: 0.92;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+}
+
+.contact-copy h1 span {
+  display: block;
+  color: #c58cff;
+}
+
+.contact-description {
+  max-width: 35rem;
+  margin: 1.3rem 0 1.65rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.contact-description strong {
+  color: #d7b5ff;
+}
+
+.contact-info-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-info-card,
+.contact-social-card,
+.contact-project-preview,
+.whatsapp-contact-card,
+.contact-availability-bar {
+  border: 1px solid rgba(211, 220, 248, 0.16);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035)),
+    rgba(16, 22, 43, 0.74);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 20px 42px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(18px);
+}
+
+.contact-info-card {
+  position: relative;
+  min-height: 5.1rem;
+  padding: 1rem 4.6rem 1rem 1.2rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #ffffff;
+  text-decoration: none;
+  overflow: hidden;
+  transition:
+    transform 0.32s ease,
+    border-color 0.32s ease,
+    box-shadow 0.32s ease;
+}
+
+.contact-info-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(202, 148, 255, 0.4);
+  box-shadow: 0 24px 50px rgba(164, 107, 255, 0.18);
+}
+
+.contact-info-icon {
+  color: #c58cff;
+}
+
+.contact-info-card span,
+.contact-social-card > span {
+  display: block;
+  color: rgba(214, 202, 255, 0.68);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.contact-info-card strong {
+  display: block;
+  margin-top: 0.25rem;
+  color: #ffffff;
+  font-size: 1.38rem;
+  font-weight: 500;
+}
+
+.contact-info-arrow {
+  position: absolute;
+  right: 1.1rem;
+  top: 50%;
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  background: linear-gradient(135deg, #9d68ff, #d39dff);
+  box-shadow: 0 0 26px rgba(180, 116, 255, 0.42);
+  transform: translateY(-50%);
+}
+
+.contact-social-card {
+  margin-top: 1rem;
+  padding: 1.1rem 1.2rem;
+  border-radius: 1rem;
+}
+
+.contact-social-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 3.3rem);
+  gap: 1.1rem;
+}
+
+.contact-social-grid a {
+  width: 3.3rem;
+  height: 3.3rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: #d8b9ff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 900;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow:
+    inset 0 0 0 1px rgba(218, 200, 255, 0.08),
+    0 12px 28px rgba(0, 0, 0, 0.16);
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.contact-social-grid a:hover {
+  transform: translateY(-4px);
+  background: linear-gradient(135deg, #9d68ff, #d39dff);
+  color: #ffffff;
+  box-shadow: 0 18px 34px rgba(170, 112, 255, 0.28);
+}
+
+/* CENTER */
+.contact-center {
+  position: relative;
+  min-height: 39rem;
+  animation: contactFadeUp 0.8s ease both;
+  animation-delay: 0.15s;
+}
+
+.contact-portrait-wrap {
+  position: relative;
+  min-height: 24rem;
+}
+
+.contact-orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 1px solid rgba(183, 131, 255, 0.28);
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  animation: contactOrbit 18s linear infinite;
+}
+
+.contact-orbit.orbit-one {
+  width: 17rem;
+  height: 17rem;
+}
+
+.contact-orbit.orbit-two {
+  width: 22rem;
+  height: 22rem;
+  animation-duration: 24s;
+}
+
+.contact-orbit.orbit-three {
+  width: 26rem;
+  height: 26rem;
+  animation-duration: 30s;
+}
+
+@keyframes contactOrbit {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.contact-orbit-dot {
+  position: absolute;
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 999px;
+  background: #c58cff;
+  box-shadow: 0 0 16px rgba(197, 140, 255, 0.8);
+}
+
+.contact-orbit-dot.one {
+  top: 4rem;
+  left: 3.2rem;
+}
+
+.contact-orbit-dot.two {
+  right: 2.8rem;
+  top: 8.7rem;
+}
+
+.contact-portrait-halo {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(204, 166, 255, 0.95) 0%, rgba(171, 117, 255, 0.95) 55%, rgba(171, 117, 255, 0.15) 100%);
+  box-shadow: 0 0 46px rgba(181, 120, 255, 0.34);
+  transform: translate(-50%, -50%);
+}
+
+.contact-portrait-image {
+  position: absolute;
+  left: 50%;
+  top: 38%;
+  width: 17.5rem;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 34px rgba(0, 0, 0, 0.26));
+  transform: translate(-50%, -50%);
+  animation: contactPortraitFloat 4.2s ease-in-out infinite;
+}
+
+@keyframes contactPortraitFloat {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) translateY(-8px);
+  }
+}
+
+.contact-laptop {
+  position: absolute;
+  left: 50%;
+  bottom: -0.4rem;
+  width: 15rem;
+  height: 8.4rem;
+  border-radius: 0.8rem 0.8rem 0.35rem 0.35rem;
+  background: linear-gradient(135deg, #2c3552, #151d33);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.28);
+  transform: translateX(-50%);
+}
+
+.contact-laptop span {
+  position: absolute;
+  left: 50%;
+  bottom: -0.6rem;
+  width: 18rem;
+  height: 0.95rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #2b3452, #12192d);
+  transform: translateX(-50%);
+}
+
+.contact-laptop-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 999px;
+  background: rgba(8, 15, 29, 0.45);
+  transform: translate(-50%, -50%);
+}
+
+.contact-project-preview {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(100%, 27rem);
+  padding: 1rem;
+  border-radius: 1rem;
+  transform: translateX(-50%);
+}
+
+.contact-project-preview > p {
+  margin: 0 0 0.8rem;
+  color: #d3b5ff;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.contact-preview-device {
+  height: 10.8rem;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 4.4rem 1fr;
+  background: #f7f4fd;
+  box-shadow: 0 20px 38px rgba(0, 0, 0, 0.25);
+}
+
+.contact-preview-device aside {
+  padding: 0.75rem 0.5rem;
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+  background: #071026;
+}
+
+.contact-preview-device aside span {
+  height: 0.45rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.contact-preview-device aside span:first-child {
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #9d68ff, #d39dff);
+}
+
+.contact-preview-device aside span.active {
+  height: 1.25rem;
+  background: #b881ff;
+}
+
+.contact-preview-device main {
+  padding: 0.8rem;
+  background: #f9f7ff;
+}
+
+.preview-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.7rem;
+}
+
+.preview-top span:first-child {
+  width: 6rem;
+  height: 0.6rem;
+  border-radius: 999px;
+  background: #12172e;
+}
+
+.preview-top span:last-child {
+  width: 3rem;
+  height: 0.6rem;
+  border-radius: 999px;
+  background: rgba(18, 23, 46, 0.13);
+}
+
+.preview-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.45rem;
+}
+
+.preview-stats span {
+  height: 2.2rem;
+  border-radius: 0.5rem;
+  background: #ffffff;
+}
+
+.preview-chart {
+  height: 5.7rem;
+  margin-top: 0.55rem;
+  border-radius: 0.6rem;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.preview-chart svg {
+  width: 100%;
+  height: 100%;
+}
+
+.preview-chart path {
+  fill: none;
+  stroke: #a66fff;
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+.preview-chart path.fill {
+  fill: rgba(166, 111, 255, 0.14);
+  stroke: none;
+}
+
+.contact-preview-footer {
+  margin-top: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.contact-preview-footer span {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.84rem;
+}
+
+.contact-preview-footer a {
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 0.6rem;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+}
+
+/* WHATSAPP CARD */
+.whatsapp-contact-card {
+  position: relative;
+  min-height: 35rem;
+  padding: 2rem 1.8rem;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  animation: contactFadeUp 0.8s ease both;
+  animation-delay: 0.25s;
+}
+
+.whatsapp-card-glow {
+  position: absolute;
+  inset: -35%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(190, 130, 255, 0.22), transparent 18rem),
+    radial-gradient(circle at 88% 74%, rgba(95, 255, 169, 0.12), transparent 18rem);
+}
+
+.whatsapp-card-header,
+.whatsapp-profile-box,
+.whatsapp-benefits,
+.whatsapp-main-button,
+.whatsapp-secure-note {
+  position: relative;
+  z-index: 2;
+}
+
+.whatsapp-card-header span {
+  display: block;
+  margin-bottom: 0.8rem;
+  color: rgba(230, 220, 255, 0.84);
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.28em;
+}
+
+.whatsapp-card-header h2 {
+  margin: 0 0 1rem;
+  color: #d8a7ff;
+  font-family: 'Brush Script MT', 'Segoe Script', cursive;
+  font-size: clamp(3.3rem, 5vw, 4.8rem);
+  line-height: 0.9;
+}
+
+.whatsapp-card-header p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.whatsapp-profile-box {
+  margin-top: 1.6rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: inset 0 0 0 1px rgba(218, 200, 255, 0.07);
+}
+
+.whatsapp-avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1rem;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  background: linear-gradient(135deg, #42d985, #25d366);
+  box-shadow: 0 0 32px rgba(37, 211, 102, 0.32);
+}
+
+.whatsapp-profile-box span {
+  display: block;
+  color: rgba(214, 202, 255, 0.72);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.whatsapp-profile-box strong {
+  display: block;
+  margin-top: 0.25rem;
+  color: #ffffff;
+  font-size: 1.42rem;
+}
+
+.whatsapp-benefits {
+  margin-top: 1.4rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.whatsapp-benefits p {
+  display: flex;
+  align-items: start;
+  gap: 0.55rem;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.whatsapp-benefits svg {
+  color: #57ef9a;
+  margin-top: 0.1rem;
+  flex: 0 0 auto;
+}
+
+.whatsapp-main-button {
+  height: 3.8rem;
+  margin-top: 1.8rem;
+  padding: 0 0.45rem 0 1.35rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.88rem;
+  font-weight: 950;
+  letter-spacing: 0.13em;
+  background: linear-gradient(135deg, #25d366, #b985ff);
+  box-shadow:
+    0 18px 42px rgba(37, 211, 102, 0.18),
+    0 18px 42px rgba(177, 115, 255, 0.22);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.whatsapp-main-button:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 24px 55px rgba(37, 211, 102, 0.26),
+    0 24px 55px rgba(177, 115, 255, 0.34);
+}
+
+.whatsapp-main-button span {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: #9161e8;
+  background: #ffffff;
+}
+
+.whatsapp-secure-note {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.82rem;
+}
+
+.whatsapp-secure-note svg {
+  color: #c58cff;
+}
+
+/* BOTTOM BAR */
+.contact-availability-bar {
+  position: relative;
+  z-index: 5;
+  width: min(1450px, calc(100% - 5rem));
+  min-height: 5.6rem;
+  margin: 1.5rem auto 0;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  display: grid;
+  grid-template-columns: 1.5fr repeat(3, 1fr);
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.availability-intro,
+.contact-availability-bar article {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.availability-intro svg,
+.contact-availability-bar article svg {
+  color: #c58cff;
+  flex: 0 0 auto;
+}
+
+.availability-intro p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.contact-availability-bar article {
+  padding-left: 1.2rem;
+  border-left: 1px solid rgba(218, 228, 255, 0.16);
+}
+
+.contact-availability-bar article span {
+  display: block;
+  color: #caa8ff;
+  font-size: 0.82rem;
+}
+
+.contact-availability-bar article strong {
+  display: block;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* ANIMATION */
+@keyframes contactFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 1380px) {
+  .contact-hero-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .whatsapp-contact-card {
+    grid-column: 1 / -1;
+    min-height: auto;
+  }
+
+  .contact-availability-bar {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 980px) {
+  .contact-page {
+    padding: 1.2rem;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(158, 100, 255, 0.18), transparent 24rem),
+      linear-gradient(135deg, #061024 0%, #08142d 100%);
+  }
+
+  .contact-side-dock,
+  .contact-dot-pattern,
+  .contact-corner-plant,
+  .contact-top-status {
+    display: none;
+  }
+
+  .contact-header {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .contact-navbar {
+    justify-self: flex-start;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+    gap: 1.2rem;
+  }
+
+  .contact-navbar a {
+    white-space: nowrap;
+    font-size: 0.68rem;
+  }
+
+  .contact-hero-layout,
+  .contact-availability-bar {
+    width: 100%;
+  }
+
+  .contact-hero-layout {
+    margin-top: 2rem;
+    grid-template-columns: 1fr;
+  }
+
+  .contact-copy h1 {
+    font-size: clamp(3.5rem, 14vw, 5rem);
+  }
+
+  .contact-description {
+    max-width: 100%;
+  }
+
+  .contact-center {
+    min-height: 39rem;
+  }
+
+  .contact-availability-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-availability-bar article {
+    padding-left: 0;
+    padding-top: 1rem;
+    border-left: none;
+    border-top: 1px solid rgba(218, 228, 255, 0.16);
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-kicker {
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+  }
+
+  .contact-script {
+    font-size: clamp(3.1rem, 16vw, 4.2rem);
+  }
+
+  .contact-copy h1 {
+    font-size: clamp(3.1rem, 17vw, 4.4rem);
+  }
+
+  .contact-info-card {
+    padding-right: 1.1rem;
+  }
+
+  .contact-info-arrow {
+    display: none;
+  }
+
+  .contact-info-card strong {
+    font-size: 1.05rem;
+  }
+
+  .contact-social-grid {
+    grid-template-columns: repeat(4, 2.8rem);
+    gap: 0.75rem;
+  }
+
+  .contact-social-grid a {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
+  .contact-portrait-image {
+    width: 14rem;
+  }
+
+  .contact-portrait-halo {
+    width: 13rem;
+    height: 13rem;
+  }
+
+  .contact-orbit.orbit-one {
+    width: 14rem;
+    height: 14rem;
+  }
+
+  .contact-orbit.orbit-two {
+    width: 18rem;
+    height: 18rem;
+  }
+
+  .contact-orbit.orbit-three {
+    width: 21rem;
+    height: 21rem;
+  }
+
+  .contact-laptop {
+    width: 12.5rem;
+    height: 7rem;
+  }
+
+  .contact-laptop span {
+    width: 15rem;
+  }
+
+  .whatsapp-card-header h2 {
+    font-size: 3.3rem;
+  }
+
+  .whatsapp-main-button {
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
+  }
+}
+
+
+/* ===== LOGOS EN REDES SOCIALES ===== */
+.contact-social-logo {
+  width: 1.95rem;
+  height: 1.95rem;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(197, 140, 255, 0.25));
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+.contact-social-grid a:hover .contact-social-logo {
+  transform: scale(1.12);
+  filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.45));
+}
+
+/* ===== ICONO REAL DE WHATSAPP ===== */
+.whatsapp-avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1rem;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #25d366, #1ebe5d);
+  box-shadow: 0 0 32px rgba(37, 211, 102, 0.32)
+}
+
+.whatsapp-avatar-logo {
+  width: 4rem;
+  height: 4rem;
+  object-fit: contain;
+}
+
+/* ===== NUEVO VISUAL ANIMADO CENTRAL ===== */
+.contact-center {
+  position: relative;
+  min-height: 39rem;
+  animation: contactFadeUp 0.8s ease both;
+  animation-delay: 0.15s;
+}
+
+.contact-motion-visual {
+  position: relative;
+  min-height: 24rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.motion-bg-orbit {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  border: 1px solid rgba(183, 131, 255, 0.25);
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  animation: motionOrbitSpin 18s linear infinite;
+}
+
+.motion-bg-orbit.orbit-one {
+  width: 14rem;
+  height: 14rem;
+}
+
+.motion-bg-orbit.orbit-two {
+  width: 19rem;
+  height: 19rem;
+  animation-duration: 24s;
+}
+
+.motion-bg-orbit.orbit-three {
+  width: 24rem;
+  height: 24rem;
+  animation-duration: 30s;
+}
+
+@keyframes motionOrbitSpin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.motion-glow {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+.motion-glow.one {
+  width: 15rem;
+  height: 15rem;
+  background: rgba(182, 120, 255, 0.28);
+  left: 48%;
+  top: 44%;
+  transform: translate(-50%, -50%);
+  animation: motionGlowFloat 5s ease-in-out infinite;
+}
+
+.motion-glow.two {
+  width: 11rem;
+  height: 11rem;
+  background: rgba(127, 99, 255, 0.18);
+  right: 2rem;
+  top: 3.5rem;
+  animation: motionGlowFloat 6s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+@keyframes motionGlowFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-10px) scale(1.05);
+    opacity: 1;
+  }
+}
+
+.motion-dot {
+  position: absolute;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 999px;
+  background: #c58cff;
+  box-shadow: 0 0 16px rgba(197, 140, 255, 0.75);
+}
+
+.motion-dot.one {
+  top: 3rem;
+  left: 4rem;
+  animation: motionDotFloat 4.5s ease-in-out infinite;
+}
+
+.motion-dot.two {
+  top: 7rem;
+  right: 2rem;
+  animation: motionDotFloat 5s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+
+.motion-dot.three {
+  bottom: 4rem;
+  left: 6rem;
+  animation: motionDotFloat 5.5s ease-in-out infinite;
+  animation-delay: 1.2s;
+}
+
+@keyframes motionDotFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.motion-code-card {
+  position: relative;
+  z-index: 3;
+  width: min(100%, 20rem);
+  min-height: 12rem;
+  padding: 1rem;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(211, 220, 248, 0.18);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04)),
+    rgba(16, 22, 43, 0.82);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 18px 42px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(18px);
+  animation: motionCardFloat 4.2s ease-in-out infinite;
+}
+
+@keyframes motionCardFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.motion-code-header {
+  display: flex;
+  gap: 0.45rem;
+  margin-bottom: 0.8rem;
+}
+
+.motion-code-header span {
+  width: 0.58rem;
+  height: 0.58rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.motion-code-lines {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.motion-code-lines p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.84);
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 0.83rem;
+  line-height: 1.55;
+}
+
+.motion-code-lines .keyword {
+  color: #d5a6ff;
+  font-weight: 700;
+}
+
+.motion-code-lines .string {
+  color: #7ff0b7;
+}
+
+.motion-mini-card {
+  position: absolute;
+  z-index: 4;
+  min-width: 7.2rem;
+  height: 2.9rem;
+  padding: 0 0.95rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  background:
+    linear-gradient(135deg, rgba(184, 130, 255, 0.24), rgba(255, 255, 255, 0.08)),
+    rgba(15, 21, 39, 0.72);
+  border: 1px solid rgba(216, 193, 255, 0.18);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(14px);
+}
+
+.motion-mini-card svg {
+  color: #c58cff;
+}
+
+.card-react {
+  top: 2rem;
+  left: 2rem;
+  animation: floatCardA 5s ease-in-out infinite;
+}
+
+.card-ts {
+  top: 1.3rem;
+  right: 1rem;
+  animation: floatCardB 5.6s ease-in-out infinite;
+}
+
+.card-db {
+  right: 0.6rem;
+  bottom: 5.5rem;
+  animation: floatCardA 5.2s ease-in-out infinite;
+}
+
+.card-ai {
+  left: 1rem;
+  bottom: 6rem;
+  animation: floatCardB 5.8s ease-in-out infinite;
+}
+
+.card-web {
+  bottom: 2.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: floatCardA 5.4s ease-in-out infinite;
+}
+
+@keyframes floatCardA {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes floatCardB {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+.motion-badge {
+  position: absolute;
+  z-index: 2;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  color: #dbc1ff;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(211, 220, 248, 0.12);
+}
+
+.badge-one {
+  left: 3rem;
+  top: 8rem;
+}
+
+.badge-two {
+  right: 2rem;
+  top: 9rem;
+}
+
+.badge-three {
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+}
+
+.contact-project-preview {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(100%, 27rem);
+  padding: 1rem;
+  border-radius: 1rem;
+  transform: translateX(-50%);
+}
+
+
+@media (max-width: 980px) {
+  .contact-center {
+    min-height: 34rem;
+  }
+
+  .contact-motion-visual {
+    min-height: 20rem;
+  }
+
+  .motion-code-card {
+    width: min(100%, 17rem);
+  }
+
+  .motion-mini-card {
+    min-width: auto;
+    padding: 0 0.8rem;
+    font-size: 0.72rem;
+  }
+
+  .card-react {
+    left: 1rem;
+  }
+
+  .card-ts {
+    right: 0.5rem;
+  }
+
+  .card-db {
+    right: 0.5rem;
+    bottom: 5rem;
+  }
+
+  .card-ai {
+    left: 0.5rem;
+    bottom: 5.4rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-center {
+    min-height: 31rem;
+  }
+
+  .contact-motion-visual {
+    min-height: 18rem;
+  }
+
+  .motion-bg-orbit.orbit-one {
+    width: 11rem;
+    height: 11rem;
+  }
+
+  .motion-bg-orbit.orbit-two {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .motion-bg-orbit.orbit-three {
+    width: 19rem;
+    height: 19rem;
+  }
+
+  .motion-code-card {
+    width: min(100%, 14.5rem);
+    min-height: 10.5rem;
+    padding: 0.85rem;
+  }
+
+  .motion-code-lines p {
+    font-size: 0.72rem;
+  }
+
+  .motion-mini-card {
+    height: 2.5rem;
+    font-size: 0.67rem;
+    gap: 0.4rem;
+  }
+
+  .motion-mini-card span {
+    display: none;
+  }
+
+  .badge-one,
+  .badge-two,
+  .badge-three {
+    font-size: 0.62rem;
+    padding: 0.35rem 0.65rem;
+  }
+}
+
+
+/* ===== AJUSTE CONTACTO: QUITAR PREVIEW Y BAJAR ANIMACIÓN ===== */
+.contact-center {
+  position: relative;
+  min-height: 39rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.contact-motion-visual {
+  min-height: 31rem;
+  width: 100%;
+  transform: translateY(4.5rem);
+}
+
+.motion-code-card {
+  width: min(100%, 22rem);
+  min-height: 13rem;
+}
+
+.motion-bg-orbit.orbit-one {
+  width: 16rem;
+  height: 16rem;
+}
+
+.motion-bg-orbit.orbit-two {
+  width: 22rem;
+  height: 22rem;
+}
+
+.motion-bg-orbit.orbit-three {
+  width: 28rem;
+  height: 28rem;
+}
+
+.card-react {
+  top: 4.3rem;
+  left: 2rem;
+}
+
+.card-ts {
+  top: 4rem;
+  right: 0.8rem;
+}
+
+.card-db {
+  right: 0.8rem;
+  bottom: 7.2rem;
+}
+
+.card-ai {
+  left: 0.8rem;
+  bottom: 8rem;
+}
+
+.card-web {
+  bottom: 4.3rem;
+}
+
+.badge-one {
+  left: 3rem;
+  top: 10rem;
+}
+
+.badge-two {
+  right: 2rem;
+  top: 11rem;
+}
+
+.badge-three {
+  bottom: 2.7rem;
+}
+
+
+/* =========================================================
+   RESPONSIVE FINAL CONTACTO - NO CAMBIA ESTRUCTURA
+   Pegar al final de Contacto.css
+========================================================= */
+
+/* ===== LAPTOPS / PANTALLAS MEDIANAS ===== */
+@media (min-width: 1181px) and (max-width: 1450px) {
+  .contact-page {
+    padding-left: 4vw;
+    padding-right: 4vw;
+  }
+
+  .contact-header {
+    width: min(1240px, calc(100% - 2rem));
+  }
+
+  .contact-navbar {
+    gap: 1.8rem;
+  }
+
+  .contact-navbar a {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+  }
+
+  .contact-top-status {
+    min-width: 14.8rem;
+    font-size: 0.63rem;
+    letter-spacing: 0.12em;
+  }
+
+  .contact-hero-layout {
+    width: min(1240px, calc(100% - 4.5rem));
+    grid-template-columns: minmax(24rem, 0.95fr) minmax(23rem, 0.72fr) minmax(28rem, 1fr);
+    gap: 1.15rem;
+    align-items: center;
+  }
+
+  .contact-copy h1 {
+    font-size: clamp(3.8rem, 5vw, 5.4rem);
+  }
+
+  .contact-script {
+    font-size: clamp(3.4rem, 4.6vw, 5rem);
+  }
+
+  .contact-description {
+    max-width: 30rem;
+    font-size: 0.98rem;
+  }
+
+  .contact-info-card {
+    min-height: 4.65rem;
+  }
+
+  .contact-info-card strong {
+    font-size: 1.2rem;
+  }
+
+  .contact-center {
+    min-height: 34rem;
+  }
+
+  .contact-motion-visual {
+    min-height: 28rem;
+    transform: translateY(3rem);
+  }
+
+  .motion-code-card {
+    width: min(100%, 19rem);
+  }
+
+  .motion-code-lines p {
+    font-size: 0.76rem;
+  }
+
+  .motion-mini-card {
+    min-width: 6.2rem;
+    height: 2.55rem;
+    font-size: 0.68rem;
+  }
+
+  .card-react {
+    top: 4.4rem;
+    left: 0.2rem;
+  }
+
+  .card-ts {
+    top: 4.2rem;
+    right: 0.1rem;
+  }
+
+  .card-db {
+    right: 0.1rem;
+    bottom: 7rem;
+  }
+
+  .card-ai {
+    left: 0.1rem;
+    bottom: 7.5rem;
+  }
+
+  .card-web {
+    bottom: 4rem;
+  }
+
+  .whatsapp-contact-card {
+    padding: 1.55rem 1.45rem;
+  }
+
+  .whatsapp-card-header h2 {
+    font-size: clamp(3rem, 4vw, 4.1rem);
+  }
+
+  .whatsapp-card-header p,
+  .whatsapp-benefits p {
+    font-size: 0.88rem;
+  }
+
+  .whatsapp-profile-box strong {
+    font-size: 1.22rem;
+  }
+
+  .contact-availability-bar {
+    width: min(1240px, calc(100% - 4.5rem));
+    grid-template-columns: 1.3fr repeat(3, 1fr);
+  }
+}
+
+/* ===== TABLET HORIZONTAL / LAPTOP PEQUEÑA ===== */
+@media (min-width: 981px) and (max-width: 1180px) {
+  .contact-page {
+    padding: 1.6rem 3.5vw 2rem;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(158, 100, 255, 0.18), transparent 24rem),
+      radial-gradient(circle at 75% 20%, rgba(195, 140, 255, 0.14), transparent 28rem),
+      linear-gradient(135deg, #061024 0%, #08142d 100%);
+  }
+
+  .contact-header {
+    width: calc(100% - 4rem);
+    grid-template-columns: auto 1fr;
+    row-gap: 1rem;
+  }
+
+  .contact-navbar {
+    justify-self: end;
+    gap: 1.35rem;
+  }
+
+  .contact-navbar a {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+  }
+
+  .contact-top-status {
+    grid-column: 1 / -1;
+    justify-self: end;
+    min-width: auto;
+    height: 2.55rem;
+    padding: 0 1rem;
+    font-size: 0.62rem;
+  }
+
+  .contact-corner-plant {
+    width: 6.8rem;
+  }
+
+  .contact-side-dock {
+    left: 1rem;
+    width: 4rem;
+    min-height: 20rem;
+  }
+
+  .contact-dock-item {
+    width: 2.45rem;
+    height: 2.45rem;
+  }
+
+  .contact-hero-layout {
+    width: calc(100% - 4.5rem);
+    margin-left: auto;
+    margin-right: 0;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  .contact-copy {
+    grid-column: 1 / 2;
+  }
+
+  .whatsapp-contact-card {
+    grid-column: 2 / 3;
+    min-height: auto;
+    padding: 1.5rem;
+  }
+
+  .contact-center {
+    grid-column: 1 / -1;
+    min-height: 25rem;
+    order: 3;
+  }
+
+  .contact-motion-visual {
+    min-height: 23rem;
+    transform: translateY(0);
+  }
+
+  .contact-copy h1 {
+    font-size: clamp(3.8rem, 7vw, 5rem);
+  }
+
+  .contact-script {
+    font-size: clamp(3.2rem, 6vw, 4.6rem);
+  }
+
+  .contact-description {
+    max-width: 100%;
+  }
+
+  .contact-info-card strong {
+    font-size: 1.15rem;
+  }
+
+  .contact-social-grid {
+    grid-template-columns: repeat(4, 3rem);
+  }
+
+  .contact-social-grid a {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .motion-code-card {
+    width: min(100%, 22rem);
+  }
+
+  .motion-bg-orbit.orbit-one {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .motion-bg-orbit.orbit-two {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  .motion-bg-orbit.orbit-three {
+    width: 25rem;
+    height: 25rem;
+  }
+
+  .contact-availability-bar {
+    width: calc(100% - 4.5rem);
+    margin-left: auto;
+    margin-right: 0;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .availability-intro {
+    grid-column: 1 / -1;
+  }
+
+  .contact-availability-bar article {
+    border-left: 0;
+    padding-left: 0;
+  }
+}
+
+/* ===== TABLET / CELULAR GRANDE ===== */
+@media (max-width: 980px) {
+  .contact-page {
+    padding: 1.2rem;
+    overflow-x: hidden;
+    background:
+      radial-gradient(circle at 20% 8%, rgba(158, 100, 255, 0.18), transparent 24rem),
+      radial-gradient(circle at 70% 45%, rgba(195, 140, 255, 0.12), transparent 24rem),
+      linear-gradient(135deg, #061024 0%, #08142d 100%);
+  }
+
+  .contact-page::before {
+    background:
+      radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.045), transparent 18rem);
+  }
+
+  .contact-side-dock,
+  .contact-dot-pattern,
+  .contact-corner-plant,
+  .contact-top-status {
+    display: none !important;
+  }
+
+  .contact-header {
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .contact-logo-link {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+
+  .contact-logo {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
+  .contact-navbar {
+    width: 100%;
+    justify-self: start;
+    display: flex;
+    gap: 1.2rem;
+    overflow-x: auto;
+    padding-bottom: 0.45rem;
+    scrollbar-width: none;
+  }
+
+  .contact-navbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .contact-navbar a {
+    white-space: nowrap;
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+  }
+
+  .contact-navbar a.active::after {
+    bottom: -0.45rem;
+  }
+
+  .contact-hero-layout {
+    width: 100%;
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.35rem;
+  }
+
+  .contact-copy,
+  .contact-center,
+  .whatsapp-contact-card {
+    width: 100%;
+  }
+
+  .contact-kicker {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    line-height: 1.8;
+  }
+
+  .contact-script {
+    font-size: clamp(3rem, 12vw, 4.4rem);
+    margin-bottom: -0.35rem;
+  }
+
+  .contact-copy h1 {
+    font-size: clamp(3.1rem, 13vw, 4.7rem);
+    line-height: 0.95;
+  }
+
+  .contact-description {
+    max-width: 100%;
+    font-size: 0.96rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .contact-info-list {
+    gap: 0.85rem;
+  }
+
+  .contact-info-card {
+    min-height: 4.6rem;
+    padding: 0.95rem 4rem 0.95rem 1rem;
+  }
+
+  .contact-info-card span,
+  .contact-social-card > span {
+    font-size: 0.64rem;
+    letter-spacing: 0.18em;
+  }
+
+  .contact-info-card strong {
+    font-size: 1.08rem;
+  }
+
+  .contact-info-arrow {
+    right: 0.85rem;
+    width: 2.45rem;
+    height: 2.45rem;
+  }
+
+  .contact-social-card {
+    padding: 1rem;
+  }
+
+  .contact-social-grid {
+    grid-template-columns: repeat(4, 3rem);
+    gap: 0.85rem;
+  }
+
+  .contact-social-grid a {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .contact-social-logo {
+    width: 1.45rem;
+    height: 1.45rem;
+  }
+
+  .contact-center {
+    min-height: 27rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contact-motion-visual {
+    min-height: 24rem;
+    transform: translateY(0) !important;
+  }
+
+  .motion-code-card {
+    width: min(100%, 19rem);
+    min-height: 12rem;
+  }
+
+  .motion-code-lines p {
+    font-size: 0.76rem;
+  }
+
+  .motion-bg-orbit.orbit-one {
+    width: 13rem;
+    height: 13rem;
+  }
+
+  .motion-bg-orbit.orbit-two {
+    width: 18rem;
+    height: 18rem;
+  }
+
+  .motion-bg-orbit.orbit-three {
+    width: 23rem;
+    height: 23rem;
+  }
+
+  .motion-mini-card {
+    min-width: auto;
+    height: 2.5rem;
+    padding: 0 0.78rem;
+    font-size: 0.68rem;
+  }
+
+  .card-react {
+    top: 2.2rem;
+    left: 0.6rem;
+  }
+
+  .card-ts {
+    top: 2rem;
+    right: 0.4rem;
+  }
+
+  .card-db {
+    right: 0.4rem;
+    bottom: 4.5rem;
+  }
+
+  .card-ai {
+    left: 0.4rem;
+    bottom: 4.8rem;
+  }
+
+  .card-web {
+    bottom: 1.7rem;
+  }
+
+  .badge-one {
+    left: 1rem;
+    top: 7rem;
+  }
+
+  .badge-two {
+    right: 1rem;
+    top: 7.4rem;
+  }
+
+  .badge-three {
+    bottom: 0.4rem;
+  }
+
+  .whatsapp-contact-card {
+    min-height: auto;
+    padding: 1.35rem;
+    border-radius: 1.05rem;
+  }
+
+  .whatsapp-card-header span {
+    font-size: 0.66rem;
+    letter-spacing: 0.2em;
+    line-height: 1.6;
+  }
+
+  .whatsapp-card-header h2 {
+    font-size: clamp(3.2rem, 13vw, 4.3rem);
+  }
+
+  .whatsapp-card-header p {
+    font-size: 0.93rem;
+    line-height: 1.6;
+  }
+
+  .whatsapp-profile-box {
+    padding: 0.85rem;
+    gap: 0.85rem;
+  }
+
+  .whatsapp-avatar {
+    width: 3.35rem;
+    height: 3.35rem;
+  }
+
+  .whatsapp-avatar-logo {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .whatsapp-profile-box span {
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+  }
+
+  .whatsapp-profile-box strong {
+    font-size: 1.08rem;
+  }
+
+  .whatsapp-benefits p {
+    font-size: 0.86rem;
+  }
+
+  .whatsapp-main-button {
+    height: 3.45rem;
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
+  }
+
+  .whatsapp-main-button span {
+    width: 2.45rem;
+    height: 2.45rem;
+  }
+
+  .contact-availability-bar {
+    width: 100%;
+    margin-top: 1.25rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .availability-intro,
+  .contact-availability-bar article {
+    align-items: flex-start;
+  }
+
+  .contact-availability-bar article {
+    padding-left: 0;
+    padding-top: 1rem;
+    border-left: none;
+    border-top: 1px solid rgba(218, 228, 255, 0.16);
+  }
+
+  .availability-intro p {
+    font-size: 0.88rem;
+  }
+}
+
+/* ===== CELULARES PEQUEÑOS ===== */
+@media (max-width: 640px) {
+  .contact-page {
+    padding: 1rem;
+  }
+
+  .contact-kicker {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  .contact-script {
+    font-size: clamp(2.7rem, 15vw, 3.8rem);
+  }
+
+  .contact-copy h1 {
+    font-size: clamp(2.8rem, 16vw, 4rem);
+  }
+
+  .contact-description {
+    font-size: 0.9rem;
+  }
+
+  .contact-info-card {
+    padding: 0.9rem 1rem;
+    gap: 0.8rem;
+  }
+
+  .contact-info-arrow {
+    display: none;
+  }
+
+  .contact-info-icon svg {
+    width: 1.55rem;
+    height: 1.55rem;
+  }
+
+  .contact-info-card strong {
+    font-size: 1rem;
+    word-break: break-word;
+  }
+
+  .contact-social-grid {
+    grid-template-columns: repeat(2, 3rem);
+  }
+
+  .contact-center {
+    min-height: 24rem;
+  }
+
+  .contact-motion-visual {
+    min-height: 21.5rem;
+  }
+
+  .motion-code-card {
+    width: min(100%, 15.5rem);
+    min-height: 10.8rem;
+    padding: 0.85rem;
+  }
+
+  .motion-code-lines p {
+    font-size: 0.64rem;
+    line-height: 1.45;
+  }
+
+  .motion-bg-orbit.orbit-one {
+    width: 11rem;
+    height: 11rem;
+  }
+
+  .motion-bg-orbit.orbit-two {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .motion-bg-orbit.orbit-three {
+    width: 19rem;
+    height: 19rem;
+  }
+
+  .motion-mini-card {
+    width: 2.65rem;
+    min-width: 2.65rem;
+    height: 2.65rem;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .motion-mini-card span {
+    display: none;
+  }
+
+  .motion-mini-card svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .card-react {
+    top: 1.9rem;
+    left: 0.7rem;
+  }
+
+  .card-ts {
+    top: 1.9rem;
+    right: 0.7rem;
+  }
+
+  .card-db {
+    right: 0.7rem;
+    bottom: 4.2rem;
+  }
+
+  .card-ai {
+    left: 0.7rem;
+    bottom: 4.2rem;
+  }
+
+  .card-web {
+    bottom: 1.2rem;
+  }
+
+  .motion-badge {
+    font-size: 0.58rem;
+    padding: 0.32rem 0.55rem;
+  }
+
+  .badge-one {
+    left: 0.8rem;
+    top: 6.7rem;
+  }
+
+  .badge-two {
+    right: 0.8rem;
+    top: 6.9rem;
+  }
+
+  .badge-three {
+    bottom: 0.15rem;
+  }
+
+  .whatsapp-contact-card {
+    padding: 1rem;
+  }
+
+  .whatsapp-card-header h2 {
+    font-size: clamp(2.8rem, 15vw, 3.7rem);
+  }
+
+  .whatsapp-profile-box {
+    align-items: flex-start;
+  }
+
+  .whatsapp-profile-box strong {
+    font-size: 1rem;
+  }
+
+  .whatsapp-main-button {
+    width: 100%;
+    height: auto;
+    min-height: 3.35rem;
+    padding: 0.75rem 0.45rem 0.75rem 1rem;
+    line-height: 1.25;
+  }
+
+  .whatsapp-secure-note {
+    align-items: flex-start;
+    font-size: 0.78rem;
+  }
+
+  .availability-intro svg,
+  .contact-availability-bar article svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+/* ===== CELULARES MUY PEQUEÑOS ===== */
+@media (max-width: 420px) {
+  .contact-navbar {
+    gap: 0.95rem;
+  }
+
+  .contact-navbar a {
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+  }
+
+  .contact-copy h1 {
+    font-size: clamp(2.45rem, 15vw, 3.4rem);
+  }
+
+  .contact-script {
+    font-size: clamp(2.35rem, 14vw, 3.3rem);
+  }
+
+  .contact-center {
+    min-height: 22rem;
+  }
+
+  .motion-code-card {
+    width: 14rem;
+  }
+
+  .motion-code-lines p {
+    font-size: 0.58rem;
+  }
+
+  .whatsapp-card-header h2 {
+    font-size: 3rem;
+  }
+
+  .whatsapp-benefits p {
+    font-size: 0.8rem;
+  }
+}

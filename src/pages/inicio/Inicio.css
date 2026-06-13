@@ -1,0 +1,4798 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,600;1,700&display=swap');
+
+:root {
+  --dark: #080d1c;
+  --dark-soft: #11172b;
+  --ink: #161729;
+  --muted: #6b6b82;
+  --white: #ffffff;
+  --panel: rgba(255, 255, 255, 0.72);
+  --violet: #b485ff;
+  --violet-2: #d3a7ff;
+  --violet-3: #7d5cff;
+  --line: rgba(174, 147, 255, 0.36);
+  --shadow: 0 22px 70px rgba(21, 22, 42, 0.18);
+  --glass: rgba(21, 25, 45, 0.74);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #070b19;
+  color: var(--white);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+.portfolio-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 47% 46%, rgba(176, 128, 255, 0.24) 0 7%, transparent 17%),
+    linear-gradient(112deg, var(--dark) 0 60%, #f7f4ff 60.1% 100%);
+}
+
+.portfolio-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -4;
+  background:
+    linear-gradient(144deg, rgba(255, 255, 255, 0) 0 55%, rgba(255, 255, 255, 0.65) 55.1% 100%),
+    radial-gradient(circle at 44% 48%, rgba(191, 145, 255, 0.28), transparent 18rem);
+}
+
+.portfolio-page::after {
+  content: '';
+  position: absolute;
+  left: 49.5%;
+  top: -16rem;
+  width: 19rem;
+  height: 150vh;
+  z-index: -3;
+  background: linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.02));
+  transform: rotate(18deg);
+  filter: blur(0.4px);
+}
+
+.top-header {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(1460px, calc(100% - 8vw));
+  margin: 0 auto;
+  padding: 2.25rem 0 0;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  color: #caa6ff;
+  font-weight: 300;
+  letter-spacing: -0.24rem;
+  font-size: 1.75rem;
+  line-height: 1;
+  border-radius: 999px;
+  border: 1px solid rgba(190, 150, 255, 0.28);
+  box-shadow: inset 0 0 18px rgba(184, 137, 255, 0.18);
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem;
+  border: 1px solid rgba(139, 122, 190, 0.18);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.42);
+  backdrop-filter: blur(18px);
+  color: #34304d;
+  box-shadow: 0 16px 35px rgba(16, 18, 37, 0.08);
+}
+
+.main-nav a {
+  padding: 0.72rem 1rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  transition: 0.25s ease;
+}
+
+.main-nav a:hover {
+  color: #fff;
+  background: linear-gradient(135deg, #9469ff, #d7b3ff);
+  box-shadow: 0 10px 25px rgba(151, 105, 255, 0.28);
+}
+
+.side-dock {
+  position: fixed;
+  left: clamp(1.35rem, 2.4vw, 2.25rem);
+  top: 50%;
+  z-index: 25;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 4.15rem;
+  padding: 1.25rem 0.65rem;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 2.2rem;
+  background: rgba(15, 20, 36, 0.64);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22), inset 0 0 0 1px rgba(171, 137, 255, 0.08);
+}
+
+.dock-item {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 1rem;
+  color: rgba(255, 255, 255, 0.92);
+  transition: 0.25s ease;
+}
+
+.dock-item:hover,
+.dock-item.is-active {
+  color: #fff;
+  background: linear-gradient(135deg, #9868ff, #d8b2ff);
+  box-shadow: 0 9px 24px rgba(178, 126, 255, 0.38);
+}
+
+.dock-line {
+  width: 2px;
+  height: 1.4rem;
+  border-radius: 999px;
+  background: linear-gradient(to bottom, transparent, var(--violet));
+}
+
+.dock-line.bottom {
+  background: linear-gradient(to bottom, var(--violet), transparent);
+}
+
+.decor-grid {
+  position: absolute;
+  right: 10.6vw;
+  top: 2.7rem;
+  width: 7.4rem;
+  height: 5rem;
+  opacity: 0.42;
+  background-image: radial-gradient(circle, #aa89ff 1.7px, transparent 2px);
+  background-size: 16px 16px;
+  z-index: -1;
+}
+
+.corner-photo {
+  position: absolute;
+  top: -1.2rem;
+  right: -1rem;
+  width: 8.5rem;
+  height: auto;
+  z-index: 3;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 22px rgba(0, 0, 0, 0.14));
+  pointer-events: none;
+}
+
+.ambient {
+  position: absolute;
+  border-radius: 999px;
+  z-index: -2;
+  filter: blur(30px);
+}
+
+.ambient-one {
+  left: 28%;
+  top: 30%;
+  width: 14rem;
+  height: 14rem;
+  background: rgba(148, 104, 255, 0.21);
+}
+
+.ambient-two {
+  right: 18%;
+  bottom: 10%;
+  width: 16rem;
+  height: 16rem;
+  background: rgba(193, 151, 255, 0.18);
+}
+
+.hero-layout {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: minmax(26rem, 0.95fr) minmax(22rem, 0.85fr) minmax(36rem, 1fr);
+  align-items: center;
+  gap: clamp(1rem, 2vw, 2rem);
+  width: min(1460px, calc(100% - 8vw));
+  min-height: calc(100vh - 8.25rem);
+  margin: 0 auto;
+  padding: 1.5rem 0 7.2rem;
+}
+
+.hero-copy {
+  max-width: 42rem;
+  min-width: 34rem;
+  padding-left: clamp(3rem, 7vw, 5rem);
+}
+
+.eyebrow {
+  margin: 0 0 1.65rem;
+  font-size: 0.73rem;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.54em;
+  text-transform: uppercase;
+}
+
+.eyebrow span {
+  color: var(--violet);
+}
+
+.eyebrow.light {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.eyebrow.dark {
+  color: #15152a;
+  letter-spacing: 0.32em;
+}
+
+.hero-copy h1 {
+  margin: 0;
+  display: grid;
+  line-height: 0.88;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  font-size: clamp(4rem, 7vw, 7.35rem);
+  text-shadow: 0 15px 44px rgba(0,0,0,0.28);
+}
+
+.hero-copy h1 span {
+  margin: 0 0 -0.45rem -0.3rem;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(4.1rem, 6.8vw, 7.2rem);
+  color: var(--violet-2);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.075em;
+  text-shadow: 0 0 30px rgba(172, 129, 255, 0.42);
+}
+
+.hero-copy h2 {
+  max-width: 28rem;
+  margin: 1.35rem 0 0;
+  color: #bba8ff;
+  font-size: clamp(1.3rem, 2vw, 1.75rem);
+  line-height: 1.34;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.title-line {
+  width: 8.2rem;
+  height: 2px;
+  margin: 1.25rem 0 1.1rem;
+  background: linear-gradient(to right, #ab84ff, rgba(171, 132, 255, 0));
+}
+
+.hero-description {
+  max-width: 30rem;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.83);
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+
+.hero-description::first-letter {
+  color: #fff;
+}
+
+.hero-copy blockquote {
+  margin: 2.15rem 0 0;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.hero-copy blockquote svg {
+  display: block;
+  color: var(--violet);
+  margin-bottom: -0.15rem;
+}
+
+.hero-copy blockquote p {
+  max-width: 31rem;
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: 1.5;
+}
+
+.portrait-wrap {
+  position: relative;
+  align-self: end;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 41rem;
+  margin-left: -6rem;
+  margin-right: -3.2rem;
+}
+
+.portrait-halo {
+  position: absolute;
+  left: 50%;
+  bottom: 11.8rem;
+  width: clamp(17rem, 22vw, 22rem);
+  height: clamp(17rem, 22vw, 22rem);
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #d6b1ff, #9b71ff 58%, #7a59e5 100%);
+  box-shadow: inset 0 0 40px rgba(255,255,255,0.3), 0 30px 70px rgba(58, 38, 103, 0.27);
+}
+
+.orbit {
+  position: absolute;
+  left: 50%;
+  bottom: 8rem;
+  border: 1px solid rgba(183, 150, 255, 0.36);
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.orbit-one { width: 29rem; height: 29rem; }
+.orbit-two { width: 25rem; height: 25rem; opacity: 0.8; }
+.orbit-three { width: 21rem; height: 21rem; opacity: 0.65; }
+
+.orbit-dot {
+  position: absolute;
+  z-index: 2;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 999px;
+  background: var(--violet);
+  box-shadow: 0 0 18px rgba(180, 133, 255, 0.86);
+}
+
+.orbit-dot.one { left: 14%; bottom: 23rem; }
+.orbit-dot.two { right: 24%; bottom: 15rem; }
+
+.portrait-image {
+  position: relative;
+  z-index: 4;
+  width: min(32rem, 36vw);
+  min-width: 24rem;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 35px rgba(7, 9, 20, 0.28));
+}
+
+.laptop {
+  position: absolute;
+  z-index: 7;
+  left: 50%;
+  bottom: 0.3rem;
+  width: min(29rem, 34vw);
+  min-width: 22rem;
+  height: 10.2rem;
+  transform: translateX(-49%);
+  border-radius: 0.5rem 0.5rem 0.15rem 0.15rem;
+  background: linear-gradient(145deg, #273149, #0f1427 70%);
+  box-shadow: 0 32px 55px rgba(6, 8, 20, 0.44), inset 0 1px 0 rgba(255,255,255,0.16);
+}
+
+.laptop::before {
+  content: '';
+  position: absolute;
+  left: -2.25rem;
+  right: -2.25rem;
+  bottom: -1.28rem;
+  height: 1.35rem;
+  border-radius: 0.25rem 0.25rem 1.3rem 1.3rem;
+  background: linear-gradient(to right, #191d2d, #555d75 50%, #191d2d);
+}
+
+.laptop span {
+  position: absolute;
+  inset: 0.85rem;
+  border-radius: 0.3rem;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent 50%);
+}
+
+.apple-dot {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: 2.25rem;
+  height: 2.25rem;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  opacity: 0.2;
+  background: #02030b;
+}
+
+.right-panel {
+  position: relative;
+  align-self: center;
+  display: grid;
+  gap: 1.7rem;
+  padding-left: 0.4rem;
+}
+
+.tech-panel {
+  width: min(100%, 37rem);
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(5.8rem, 1fr));
+  gap: 0.85rem;
+}
+
+.tech-card {
+  display: grid;
+  place-items: center;
+  gap: 0.32rem;
+  min-height: 5.7rem;
+  padding: 0.7rem 0.45rem 0.58rem;
+  border: 1px solid rgba(152, 135, 196, 0.13);
+  border-radius: 1.05rem;
+  background: rgba(255,255,255,0.68);
+  box-shadow: 0 14px 28px rgba(48, 49, 80, 0.1), inset 0 1px 0 rgba(255,255,255,0.82);
+  backdrop-filter: blur(18px);
+  color: #1e1e31;
+  transition: 0.25s ease;
+}
+
+.tech-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 42px rgba(112, 87, 179, 0.17), inset 0 1px 0 rgba(255,255,255,0.85);
+}
+
+.tech-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1.1rem;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.tech-card strong {
+  font-size: 0.76rem;
+  letter-spacing: -0.02em;
+}
+
+.tech-card small {
+  color: #696982;
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+
+.tech-logo {
+  width: 1.85rem;
+  height: 1.85rem;
+  object-fit: contain;
+  display: block;
+}
+
+.preview-area {
+  width: min(100%, 42rem);
+}
+
+.devices-wrap {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 19rem;
+}
+
+.browser-card {
+  display: grid;
+  grid-template-columns: 8.6rem 1fr;
+  width: 34.6rem;
+  height: 17.25rem;
+  overflow: hidden;
+  border: 1px solid rgba(137, 122, 178, 0.14);
+  border-radius: 1.05rem;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 22px 60px rgba(36, 39, 69, 0.17);
+  backdrop-filter: blur(20px);
+}
+
+.browser-sidebar {
+  padding: 0.85rem;
+  background: #0d1325;
+  color: rgba(255,255,255,0.74);
+}
+
+.mini-logo {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #9d74ff, #e0bbff);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: -0.08em;
+}
+
+.browser-sidebar p {
+  display: inline-block;
+  margin: 0 0 0 0.45rem;
+  color: #fff;
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.browser-sidebar span:not(.mini-logo):not(.layout-dot) {
+  display: flex;
+  align-items: center;
+  gap: 0.43rem;
+  margin-top: 0.78rem;
+  padding: 0.45rem 0.35rem;
+  border-radius: 0.55rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+
+.browser-sidebar span.active {
+  background: linear-gradient(135deg, #9868ff, #c796ff);
+  color: #fff;
+}
+
+.layout-dot {
+  display: inline-block;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.browser-content {
+  color: #1b1d30;
+  padding: 0.95rem 1.1rem;
+  background:
+    radial-gradient(circle at 82% 0, rgba(195, 157, 255, 0.16), transparent 28%),
+    #fbfaff;
+}
+
+.browser-toolbar,
+.chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.browser-toolbar small {
+  color: #8b8ca2;
+  font-weight: 700;
+}
+
+.browser-toolbar h3 {
+  margin: 0.18rem 0 0;
+  font-size: 0.96rem;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 0.45rem;
+  color: #56566e;
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.stat-card,
+.chart-card,
+.activity-card {
+  border: 1px solid rgba(131, 118, 170, 0.1);
+  border-radius: 0.82rem;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(47, 49, 77, 0.07);
+}
+
+.stat-card {
+  padding: 0.65rem;
+}
+
+.stat-card small {
+  display: block;
+  color: #8d8da0;
+  font-size: 0.58rem;
+  font-weight: 800;
+}
+
+.stat-card strong {
+  margin-top: 0.1rem;
+  display: block;
+  color: #18192d;
+  font-size: 1rem;
+}
+
+.chart-card {
+  position: relative;
+  margin-top: 0.72rem;
+  min-height: 6.1rem;
+  padding: 0.65rem;
+  overflow: hidden;
+}
+
+.chart-header strong {
+  font-size: 0.68rem;
+}
+
+.chart-header span {
+  color: #9a85e9;
+  font-size: 0.62rem;
+  font-weight: 800;
+}
+
+.chart-grid-lines {
+  position: absolute;
+  inset: 2.2rem 0.7rem 0.7rem;
+  background-image: linear-gradient(rgba(113, 115, 147, 0.08) 1px, transparent 1px);
+  background-size: 100% 1.25rem;
+}
+
+.chart-line {
+  position: absolute;
+  left: 0.65rem;
+  right: 0.65rem;
+  bottom: 0.25rem;
+  width: calc(100% - 1.3rem);
+  height: 5.3rem;
+}
+
+.chart-line path:first-child {
+  fill: none;
+  stroke: #a272ff;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.chart-fill {
+  fill: rgba(162, 114, 255, 0.11);
+  stroke: none;
+}
+
+.activity-card {
+  position: absolute;
+  right: 6rem;
+  bottom: 0.88rem;
+  width: 9.5rem;
+  min-height: 5.9rem;
+  padding: 0.65rem;
+  background: rgba(255,255,255,0.92);
+}
+
+.activity-card strong {
+  font-size: 0.64rem;
+}
+
+.activity-card p {
+  display: flex;
+  align-items: center;
+  gap: 0.38rem;
+  margin: 0.52rem 0 0;
+  color: #696a81;
+  font-size: 0.52rem;
+  font-weight: 700;
+}
+
+.activity-card p span {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: #a873ff;
+}
+
+.mobile-card {
+  position: absolute;
+  right: 0;
+  bottom: 0.2rem;
+  width: 7.35rem;
+  min-height: 15.2rem;
+  padding: 1.1rem 0.6rem 0.7rem;
+  border: 2px solid #1d2030;
+  border-radius: 1.25rem;
+  background: rgba(255,255,255,0.9);
+  color: #1d1d31;
+  box-shadow: 0 20px 48px rgba(28, 31, 55, 0.2);
+}
+
+.phone-notch {
+  position: absolute;
+  left: 50%;
+  top: 0.34rem;
+  width: 2.2rem;
+  height: 0.28rem;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: #1c2030;
+}
+
+.phone-time {
+  margin: 0;
+  color: #79798b;
+  font-size: 0.48rem;
+  font-weight: 800;
+}
+
+.mobile-card h4 {
+  margin: 0.45rem 0 0.35rem;
+  font-size: 0.72rem;
+  line-height: 1.1;
+}
+
+.mobile-card small {
+  display: block;
+  margin: 0.2rem 0 0.55rem;
+  color: #77788e;
+  font-size: 0.48rem;
+  font-weight: 800;
+}
+
+.phone-task {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+  padding: 0.43rem 0.34rem;
+  border-radius: 0.55rem;
+  background: #f7f7fb;
+}
+
+.phone-task span {
+  width: 0.43rem;
+  height: 0.43rem;
+  border-radius: 999px;
+}
+
+.phone-task .success { background: #3cd08a; }
+.phone-task .warning { background: #ff7788; }
+.phone-task p {
+  margin: 0;
+  font-size: 0.45rem;
+  font-weight: 800;
+}
+
+.quick-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.32rem;
+}
+
+.quick-row button {
+  display: grid;
+  place-items: center;
+  gap: 0.12rem;
+  border: 0;
+  border-radius: 0.55rem;
+  padding: 0.32rem 0;
+  color: #7c5be9;
+  background: #f2eeff;
+  font-size: 0.38rem;
+  font-weight: 900;
+}
+
+.contact-bar {
+  position: absolute;
+  left: 50%;
+  bottom: 1.35rem;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: 1fr 1.12fr 1.7fr auto;
+  align-items: center;
+  gap: 0;
+  width: min(1325px, calc(100% - 12vw));
+  min-height: 4.7rem;
+  padding: 0.8rem 1.05rem;
+  transform: translateX(-50%);
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 0.95rem;
+  background: linear-gradient(90deg, rgba(24, 31, 54, 0.84), rgba(65, 69, 94, 0.62));
+  backdrop-filter: blur(22px);
+  box-shadow: 0 24px 62px rgba(2, 5, 17, 0.26), inset 0 1px 0 rgba(255,255,255,0.14);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-width: 0;
+  padding: 0 1.4rem;
+  border-right: 1px solid rgba(255,255,255,0.16);
+}
+
+.contact-icon {
+  flex: 0 0 auto;
+  color: var(--violet-2);
+}
+
+.contact-item span {
+  display: block;
+  margin-bottom: 0.22rem;
+  color: rgba(223, 219, 244, 0.62);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.contact-item strong {
+  display: block;
+  overflow: hidden;
+  color: #fff;
+  font-size: 0.96rem;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.connect-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-left: 1rem;
+  min-width: 12.3rem;
+  padding: 0.9rem 0.65rem 0.9rem 1.3rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #9d68ff, #d39dff);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+  box-shadow: 0 14px 36px rgba(189, 136, 255, 0.28);
+  transition: 0.25s ease;
+}
+
+.connect-button svg {
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0.42rem;
+  border-radius: 999px;
+  color: #9d6aff;
+  background: #fff;
+}
+
+.connect-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 42px rgba(189, 136, 255, 0.38);
+}
+
+@media (max-width: 1380px) {
+  .hero-layout {
+    grid-template-columns: minmax(23rem, 0.92fr) minmax(21rem, 0.72fr) minmax(31rem, 1fr);
+  }
+
+  .hero-copy {
+    padding-left: 4rem;
+  }
+
+  .browser-card {
+    width: 31rem;
+  }
+}
+
+@media (max-width: 1180px) {
+  .portfolio-page {
+    overflow: auto;
+    background: linear-gradient(150deg, var(--dark) 0 48%, #f7f4ff 48.1% 100%);
+  }
+
+  .hero-layout {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 4rem 0 9rem;
+  }
+
+  .hero-copy {
+    padding-left: 5rem;
+    max-width: 48rem;
+  }
+
+  .portrait-wrap {
+    min-height: 35rem;
+    margin: -2.5rem 0 0;
+  }
+
+  .right-panel {
+    justify-items: center;
+    padding: 0;
+  }
+
+  .tech-panel,
+  .preview-area {
+    width: min(100%, 46rem);
+  }
+
+  .contact-bar {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    margin: -5rem auto 2rem;
+    grid-template-columns: 1fr 1fr;
+    width: min(760px, calc(100% - 8vw));
+  }
+
+  .contact-item:nth-child(2) {
+    border-right: 0;
+  }
+
+  .contact-item:nth-child(3) {
+    margin-top: 1rem;
+  }
+
+  .connect-button {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .top-header {
+    width: min(100% - 2rem, 42rem);
+    padding-top: 1.1rem;
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  .brand-mark {
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+
+  .side-dock {
+    left: 50%;
+    top: auto;
+    bottom: 0.75rem;
+    transform: translateX(-50%);
+    flex-direction: row;
+    width: auto;
+    padding: 0.45rem;
+    border-radius: 999px;
+  }
+
+  .dock-line {
+    display: none;
+  }
+
+  .dock-item {
+    width: 2.45rem;
+    height: 2.45rem;
+    border-radius: 999px;
+  }
+
+  .decor-grid,
+  .corner-photo {
+    display: none;
+  }
+
+  .hero-layout {
+    width: min(100% - 2rem, 42rem);
+    padding: 2.5rem 0 8rem;
+  }
+
+  .hero-copy {
+    padding-left: 0;
+  }
+
+  .eyebrow {
+    letter-spacing: 0.28em;
+    line-height: 1.5;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(3.5rem, 18vw, 5rem);
+  }
+
+  .hero-copy h1 span {
+    font-size: clamp(3.7rem, 18vw, 5.25rem);
+  }
+
+  .hero-copy h2 {
+    font-size: 1.08rem;
+  }
+
+  .portrait-wrap {
+    min-height: 28rem;
+  }
+
+  .portrait-image {
+    min-width: 18rem;
+    width: 80vw;
+  }
+
+  .portrait-halo {
+    bottom: 9.7rem;
+    width: 16rem;
+    height: 16rem;
+  }
+
+  .orbit-one { width: 21rem; height: 21rem; }
+  .orbit-two { width: 18rem; height: 18rem; }
+  .orbit-three { width: 15rem; height: 15rem; }
+
+  .laptop {
+    min-width: 18rem;
+    height: 7.6rem;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .devices-wrap {
+    min-height: auto;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .browser-card {
+    grid-template-columns: 1fr;
+    width: 100%;
+    height: auto;
+  }
+
+  .browser-sidebar {
+    display: none;
+  }
+
+  .mobile-card {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    justify-self: center;
+    width: 13rem;
+  }
+
+  .activity-card {
+    position: static;
+    width: auto;
+    margin-top: 0.75rem;
+  }
+
+  .contact-bar {
+    grid-template-columns: 1fr;
+    width: min(100% - 2rem, 42rem);
+    margin-bottom: 6rem;
+  }
+
+  .contact-item {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 0.9rem 0.4rem;
+  }
+
+  .contact-item:nth-child(3) {
+    margin-top: 0;
+  }
+
+  .connect-button {
+    width: 100%;
+    margin: 1rem 0 0;
+  }
+}
+
+/* ===== AJUSTE DE ALINEACIÓN DESKTOP ===== */
+@media (min-width: 1381px) {
+  .hero-layout {
+    width: min(1520px, calc(100% - 9vw));
+    grid-template-columns: minmax(27rem, 0.9fr) minmax(25rem, 0.75fr) minmax(36rem, 1fr);
+    gap: clamp(2.8rem, 4vw, 5rem);
+    align-items: center;
+    padding-top: 2rem;
+  }
+
+  .hero-copy {
+    padding-left: clamp(3.8rem, 5.8vw, 6rem);
+  }
+
+  .portrait-wrap {
+    min-height: 39rem;
+    margin-left: -2.5rem;
+    margin-right: 0;
+    transform: translateY(1rem);
+  }
+
+  .portrait-image {
+    width: min(28.5rem, 30vw);
+    min-width: 22rem;
+  }
+
+  .portrait-halo {
+    bottom: 11.2rem;
+    width: clamp(16.5rem, 20vw, 20rem);
+    height: clamp(16.5rem, 20vw, 20rem);
+  }
+
+  .orbit {
+    bottom: 7.6rem;
+  }
+
+  .orbit-one {
+    width: 27rem;
+    height: 27rem;
+  }
+
+  .orbit-two {
+    width: 23.5rem;
+    height: 23.5rem;
+  }
+
+  .orbit-three {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  .laptop {
+    width: min(26rem, 28vw);
+    min-width: 20rem;
+    height: 9.4rem;
+    bottom: 0.8rem;
+  }
+
+  .right-panel {
+    justify-self: end;
+    width: min(100%, 39rem);
+    gap: 2.6rem;
+    padding-left: 1.6rem;
+    transform: translateY(0.8rem);
+  }
+
+  .tech-panel,
+  .preview-area {
+    width: 100%;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem 1.1rem;
+  }
+
+  .tech-card {
+    min-height: 6rem;
+  }
+
+  .devices-wrap {
+    min-height: 20rem;
+  }
+
+  .browser-card {
+    width: 34rem;
+  }
+
+  .mobile-card {
+    right: -0.7rem;
+  }
+}
+
+/* ===== AJUSTE PARA LAPTOPS ===== */
+@media (min-width: 1181px) and (max-width: 1380px) {
+  .hero-layout {
+    width: min(1280px, calc(100% - 7vw));
+    grid-template-columns: minmax(23rem, 0.9fr) minmax(21rem, 0.65fr) minmax(31rem, 1fr);
+    gap: 2.2rem;
+  }
+
+  .hero-copy {
+    padding-left: 3.8rem;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(4rem, 6vw, 6.1rem);
+  }
+
+  .hero-copy h1 span {
+    font-size: clamp(4rem, 5.8vw, 6rem);
+  }
+
+  .portrait-wrap {
+    margin-left: -2rem;
+    margin-right: 0;
+    min-height: 36rem;
+  }
+
+  .portrait-image {
+    width: min(25rem, 28vw);
+    min-width: 20rem;
+  }
+
+  .laptop {
+    width: min(23rem, 27vw);
+    min-width: 19rem;
+  }
+
+  .right-panel {
+    gap: 2.2rem;
+    padding-left: 1rem;
+  }
+
+  .tech-grid {
+    gap: 0.9rem;
+  }
+
+  .browser-card {
+    width: 30.5rem;
+  }
+}
+
+
+.brand {
+  width: 3.2rem;
+  height: 3.2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  text-decoration: none;
+  position: relative;
+  z-index: 5;
+}
+
+.brand-logo {
+  width: 3.7rem;
+  height: 3.7rem;
+  object-fit: contain;
+  display: block;
+  animation: logoFloat 3.2s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px rgba(192, 132, 252, 0.45));
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.brand:hover .brand-logo {
+  transform: scale(1.12) rotate(4deg);
+  filter: drop-shadow(0 0 18px rgba(192, 132, 252, 0.75));
+}
+
+@keyframes logoFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-6px) rotate(2deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+
+.hero-copy {
+  padding-left: clamp(1.5rem, 2.8vw, 3rem) !important;
+  transform: translateX(-4rem);
+}
+
+
+
+/* =========================================================
+   RESPONSIVE FINAL INICIO
+========================================================= */
+
+/* ===== LAPTOPS / PANTALLAS MEDIANAS ===== */
+@media (min-width: 1181px) and (max-width: 1450px) {
+  .portfolio-page {
+    overflow-x: hidden;
+  }
+
+  .top-header {
+    width: min(1240px, calc(100% - 2rem));
+  }
+
+  .main-nav {
+    gap: 1.6rem;
+  }
+
+  .main-nav a {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+  }
+
+  .hero-layout {
+    width: min(1240px, calc(100% - 4.5rem));
+    grid-template-columns: minmax(23rem, 0.85fr) minmax(22rem, 0.75fr) minmax(31rem, 1fr);
+    gap: 1.2rem;
+    min-height: calc(100vh - 8rem);
+    padding-bottom: 6.4rem;
+  }
+
+  .hero-copy {
+    padding-left: 3.5rem !important;
+    max-width: 31rem;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(4.1rem, 5vw, 5.7rem);
+    line-height: 0.9;
+  }
+
+  .hero-copy h1 span {
+    font-size: clamp(3.4rem, 4.8vw, 5rem);
+  }
+
+  .hero-copy h2 {
+    font-size: clamp(1.35rem, 2vw, 2rem);
+  }
+
+  .hero-description {
+    font-size: 0.94rem;
+    line-height: 1.55;
+  }
+
+  .hero-copy blockquote p {
+    font-size: 0.9rem;
+  }
+
+  .portrait-wrap {
+    min-height: 34rem;
+    transform: translateX(-0.8rem);
+  }
+
+  .portrait-image {
+    width: min(25vw, 19rem);
+  }
+
+  .portrait-halo {
+    width: 17rem;
+    height: 17rem;
+  }
+
+  .orbit-one {
+    width: 25rem;
+    height: 25rem;
+  }
+
+  .orbit-two {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  .orbit-three {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .laptop {
+    width: 21rem;
+    height: 12rem;
+  }
+
+  .laptop span {
+    width: 24rem;
+  }
+
+  .right-panel {
+    gap: 1rem;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+
+  .tech-card {
+    min-height: 6.6rem;
+    padding: 0.8rem 0.65rem;
+  }
+
+  .tech-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .tech-logo {
+    width: 1.65rem;
+    height: 1.65rem;
+  }
+
+  .devices-wrap {
+    min-height: 17rem;
+  }
+
+  .browser-card {
+    width: min(100%, 34rem);
+    min-height: 14.2rem;
+  }
+
+  .mobile-card {
+    right: 0;
+    transform: scale(0.88);
+    transform-origin: right center;
+  }
+
+  .contact-bar {
+    width: min(1240px, calc(100% - 4.5rem));
+    grid-template-columns: 1fr 1.1fr 1.4fr auto;
+    gap: 1rem;
+  }
+
+  .contact-item strong {
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== TABLET HORIZONTAL / LAPTOP PEQUEÑA ===== */
+@media (min-width: 981px) and (max-width: 1180px) {
+  .portfolio-page {
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .top-header {
+    width: calc(100% - 4.5rem);
+    margin-left: auto;
+    margin-right: 0;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+  }
+
+  .main-nav {
+    justify-self: end;
+    gap: 1.2rem;
+  }
+
+  .main-nav a {
+    font-size: 0.64rem;
+    letter-spacing: 0.17em;
+  }
+
+  .side-dock {
+    left: 1rem;
+    width: 4rem;
+    min-height: 20rem;
+  }
+
+  .dock-item {
+    width: 2.45rem;
+    height: 2.45rem;
+  }
+
+  .corner-photo {
+    width: 6.8rem;
+  }
+
+  .decor-grid {
+    right: 5vw;
+    top: 5rem;
+  }
+
+  .hero-layout {
+    width: calc(100% - 4.5rem);
+    margin-left: auto;
+    margin-right: 0;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1.35rem;
+    min-height: auto;
+    padding: 2rem 0 2rem;
+  }
+
+  .hero-copy {
+    padding-left: 0 !important;
+    max-width: 100%;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(4rem, 8vw, 6rem);
+  }
+
+  .hero-copy h1 span {
+    font-size: clamp(3.5rem, 7vw, 5rem);
+  }
+
+  .hero-description {
+    max-width: 34rem;
+  }
+
+  .portrait-wrap {
+    min-height: 34rem;
+  }
+
+  .portrait-image {
+    width: min(36vw, 20rem);
+  }
+
+  .portrait-halo {
+    width: 17rem;
+    height: 17rem;
+  }
+
+  .laptop {
+    width: 21rem;
+    height: 11.5rem;
+  }
+
+  .laptop span {
+    width: 24rem;
+  }
+
+  .right-panel {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+
+  .devices-wrap {
+    min-height: 20rem;
+  }
+
+  .browser-card {
+    width: min(100%, 43rem);
+  }
+
+  .mobile-card {
+    right: 1rem;
+    transform: scale(0.9);
+    transform-origin: right center;
+  }
+
+  .contact-bar {
+    position: relative;
+    width: calc(100% - 4.5rem);
+    margin-left: auto;
+    margin-right: 0;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .connect-button {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    justify-content: center;
+  }
+}
+
+/* ===== TABLET / CELULAR GRANDE ===== */
+@media (max-width: 980px) {
+  .portfolio-page {
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: 1.2rem;
+  }
+
+  .portfolio-page::before {
+    background:
+      radial-gradient(circle at 20% 10%, rgba(158, 100, 255, 0.18), transparent 24rem),
+      linear-gradient(135deg, #061024 0%, #08142d 100%) !important;
+  }
+
+  .side-dock,
+  .decor-grid,
+  .corner-photo {
+    display: none !important;
+  }
+
+  .top-header {
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .brand {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+
+  .brand-logo {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
+  .main-nav {
+    width: 100%;
+    justify-self: start;
+    display: flex;
+    gap: 1.2rem;
+    overflow-x: auto;
+    padding-bottom: 0.45rem;
+    scrollbar-width: none;
+  }
+
+  .main-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .main-nav a {
+    white-space: nowrap;
+    font-size: 0.66rem;
+    letter-spacing: 0.17em;
+  }
+
+  .hero-layout {
+    width: 100%;
+    margin-top: 2rem;
+    min-height: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+    padding: 0 0 1.5rem;
+  }
+
+  .hero-copy {
+    padding-left: 0 !important;
+    max-width: 100%;
+  }
+
+  .eyebrow.light,
+  .eyebrow.dark {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    line-height: 1.7;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(3.4rem, 13vw, 5rem);
+    line-height: 0.95;
+  }
+
+  .hero-copy h1 span {
+    font-size: clamp(3rem, 12vw, 4.5rem);
+    line-height: 0.85;
+  }
+
+  .hero-copy h2 {
+    font-size: clamp(1.4rem, 6vw, 2rem);
+    line-height: 1.25;
+    letter-spacing: 0.16em;
+  }
+
+  .hero-description {
+    max-width: 100%;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .hero-copy blockquote {
+    margin-top: 1.2rem;
+  }
+
+  .hero-copy blockquote svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .hero-copy blockquote p {
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  .portrait-wrap {
+    width: 100%;
+    min-height: 30rem;
+    overflow: hidden;
+  }
+
+  .portrait-image {
+    width: min(70vw, 20rem);
+  }
+
+  .portrait-halo {
+    width: min(66vw, 18rem);
+    height: min(66vw, 18rem);
+  }
+
+  .orbit-one {
+    width: min(88vw, 25rem) !important;
+    height: min(88vw, 25rem) !important;
+  }
+
+  .orbit-two {
+    width: min(72vw, 20rem) !important;
+    height: min(72vw, 20rem) !important;
+  }
+
+  .orbit-three {
+    width: min(55vw, 15rem) !important;
+    height: min(55vw, 15rem) !important;
+  }
+
+  .laptop {
+    width: min(78vw, 21rem);
+    height: min(42vw, 11.5rem);
+  }
+
+  .laptop span {
+    width: min(86vw, 24rem);
+  }
+
+  .right-panel {
+    width: 100%;
+    display: grid;
+    gap: 1.2rem;
+  }
+
+  .tech-panel,
+  .preview-area {
+    width: 100%;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+
+  .tech-card {
+    min-height: 6.4rem;
+    padding: 0.8rem 0.6rem;
+  }
+
+  .tech-icon {
+    width: 2.7rem;
+    height: 2.7rem;
+  }
+
+  .tech-logo {
+    width: 1.65rem;
+    height: 1.65rem;
+  }
+
+  .tech-card strong {
+    font-size: 0.82rem;
+  }
+
+  .tech-card small {
+    font-size: 0.68rem;
+  }
+
+  .devices-wrap {
+    width: 100%;
+    min-height: 21rem;
+    overflow: hidden;
+  }
+
+  .browser-card {
+    width: 100%;
+    min-height: 17rem;
+    grid-template-columns: 4.8rem 1fr;
+  }
+
+  .browser-sidebar {
+    padding: 0.75rem 0.45rem;
+  }
+
+  .browser-sidebar p {
+    font-size: 0.62rem;
+  }
+
+  .browser-sidebar span {
+    font-size: 0.55rem;
+  }
+
+  .mini-logo {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .browser-content {
+    padding: 0.85rem;
+  }
+
+  .browser-toolbar h3 {
+    font-size: 0.88rem;
+  }
+
+  .browser-toolbar small,
+  .stat-card small,
+  .chart-header span,
+  .activity-card p {
+    font-size: 0.6rem;
+  }
+
+  .stat-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .stat-card {
+    padding: 0.55rem;
+  }
+
+  .stat-card strong {
+    font-size: 0.9rem;
+  }
+
+  .chart-card {
+    min-height: 5.2rem;
+  }
+
+  .activity-card {
+    padding: 0.65rem;
+  }
+
+  .mobile-card {
+    right: 0.2rem;
+    bottom: 0.8rem;
+    transform: scale(0.78);
+    transform-origin: right bottom;
+  }
+
+  .contact-bar {
+    position: relative;
+    width: 100%;
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+
+  .contact-item {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .contact-item span {
+    font-size: 0.64rem;
+    letter-spacing: 0.18em;
+  }
+
+  .contact-item strong {
+    font-size: 0.9rem;
+    word-break: break-word;
+  }
+
+  .connect-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ===== CELULARES PEQUEÑOS ===== */
+@media (max-width: 640px) {
+  .portfolio-page {
+    padding: 1rem;
+  }
+
+  .eyebrow.light,
+  .eyebrow.dark {
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(3rem, 16vw, 4.3rem);
+  }
+
+  .hero-copy h1 span {
+    font-size: clamp(2.75rem, 15vw, 4rem);
+  }
+
+  .hero-copy h2 {
+    font-size: clamp(1.2rem, 6vw, 1.65rem);
+  }
+
+  .hero-description {
+    font-size: 0.88rem;
+  }
+
+  .portrait-wrap {
+    min-height: 25rem;
+  }
+
+  .portrait-image {
+    width: min(76vw, 17rem);
+  }
+
+  .portrait-halo {
+    width: min(72vw, 15rem);
+    height: min(72vw, 15rem);
+  }
+
+  .laptop {
+    width: min(78vw, 17.5rem);
+    height: 9rem;
+  }
+
+  .laptop span {
+    width: min(84vw, 19.5rem);
+  }
+
+  .orbit-one {
+    width: min(90vw, 20rem) !important;
+    height: min(90vw, 20rem) !important;
+  }
+
+  .orbit-two {
+    width: min(72vw, 16rem) !important;
+    height: min(72vw, 16rem) !important;
+  }
+
+  .orbit-three {
+    width: min(55vw, 12rem) !important;
+    height: min(55vw, 12rem) !important;
+  }
+
+  .tech-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tech-card {
+    min-height: 5.9rem;
+  }
+
+  .preview-area .eyebrow {
+    font-size: 0.6rem;
+  }
+
+  .devices-wrap {
+    min-height: 18.5rem;
+  }
+
+  .browser-card {
+    min-height: 15.5rem;
+    grid-template-columns: 3.8rem 1fr;
+  }
+
+  .browser-sidebar {
+    padding: 0.65rem 0.35rem;
+  }
+
+  .browser-sidebar span {
+    font-size: 0;
+  }
+
+  .browser-sidebar .layout-dot {
+    display: inline-block;
+  }
+
+  .mini-logo {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.65rem;
+  }
+
+  .browser-content {
+    padding: 0.7rem;
+  }
+
+  .browser-toolbar {
+    gap: 0.5rem;
+  }
+
+  .toolbar-actions {
+    display: none;
+  }
+
+  .stat-row {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    min-height: 2.3rem;
+  }
+
+  .activity-card {
+    display: none;
+  }
+
+  .mobile-card {
+    transform: scale(0.64);
+    right: -0.8rem;
+    bottom: 0.2rem;
+  }
+}
+
+/* ===== CELULARES MUY PEQUEÑOS ===== */
+@media (max-width: 420px) {
+  .main-nav {
+    gap: 0.95rem;
+  }
+
+  .main-nav a {
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(2.55rem, 15vw, 3.5rem);
+  }
+
+  .hero-copy h1 span {
+    font-size: clamp(2.4rem, 14vw, 3.2rem);
+  }
+
+  .portrait-wrap {
+    min-height: 22rem;
+  }
+
+  .portrait-image {
+    width: min(74vw, 14.5rem);
+  }
+
+  .portrait-halo {
+    width: min(70vw, 13rem);
+    height: min(70vw, 13rem);
+  }
+
+  .laptop {
+    width: min(76vw, 15rem);
+    height: 7.8rem;
+  }
+
+  .laptop span {
+    width: min(84vw, 16.8rem);
+  }
+
+  .tech-grid {
+    gap: 0.65rem;
+  }
+
+  .tech-card {
+    padding: 0.7rem 0.45rem;
+  }
+
+  .tech-card strong {
+    font-size: 0.76rem;
+  }
+
+  .tech-card small {
+    font-size: 0.62rem;
+  }
+
+  .devices-wrap {
+    min-height: 16.5rem;
+  }
+
+  .browser-card {
+    min-height: 14rem;
+  }
+
+  .mobile-card {
+    transform: scale(0.55);
+    right: -1.4rem;
+  }
+}
+
+/* =========================================================
+   FIX FINAL RESPONSIVE INICIO
+   Pegar al final de Inicio.css
+   Corrige cortes, desbordes y mockups sin tocar Inicio.tsx
+========================================================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ===== TABLET / CELULAR ===== */
+@media (max-width: 980px) {
+  .portfolio-page {
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+    overflow-x: hidden;
+  }
+
+  .top-header {
+    position: relative;
+    width: 100% !important;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.8rem;
+    overflow: hidden;
+  }
+
+  .brand {
+    flex: 0 0 auto;
+    width: 3rem;
+    height: 3rem;
+    z-index: 5;
+  }
+
+  .brand-logo {
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+
+  .main-nav {
+    flex: 1;
+    min-width: 0;
+    max-width: calc(100vw - 5rem);
+    height: 3rem;
+    padding: 0 0.75rem;
+    border-radius: 999px;
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+
+  .main-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .main-nav a {
+    flex: 0 0 auto;
+    font-size: 0.62rem !important;
+    letter-spacing: 0.14em !important;
+    line-height: 1;
+  }
+
+  .hero-layout {
+    width: 100% !important;
+    max-width: 100%;
+    min-height: auto !important;
+    margin: 1.6rem auto 0 !important;
+    padding: 0 0 1.2rem !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 1.4rem !important;
+    overflow: visible;
+  }
+
+  .hero-copy {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    margin: 0 !important;
+    transform: none !important;
+    overflow: visible;
+  }
+
+  .hero-copy .eyebrow,
+  .eyebrow.light {
+    max-width: 100%;
+    margin-bottom: 0.8rem;
+    font-size: 0.62rem !important;
+    letter-spacing: 0.16em !important;
+    line-height: 1.5;
+    white-space: normal;
+  }
+
+  .hero-copy h1 {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    font-size: clamp(3rem, 15vw, 4.8rem) !important;
+    line-height: 0.9 !important;
+    letter-spacing: -0.05em;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .hero-copy h1 span {
+    display: block;
+    font-size: clamp(2.7rem, 14vw, 4.3rem) !important;
+    line-height: 0.85 !important;
+  }
+
+  .hero-copy h2 {
+    max-width: 100%;
+    margin-top: 1rem;
+    font-size: clamp(1.15rem, 5.8vw, 1.75rem) !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.13em !important;
+    word-break: normal;
+  }
+
+  .title-line {
+    margin: 1rem 0;
+  }
+
+  .hero-description {
+    width: 100%;
+    max-width: 100%;
+    font-size: 0.9rem !important;
+    line-height: 1.6;
+  }
+
+  .hero-copy blockquote {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 1.2rem;
+  }
+
+  .hero-copy blockquote p {
+    font-size: 0.86rem !important;
+    line-height: 1.55;
+  }
+
+  .portrait-wrap {
+    width: 100% !important;
+    max-width: 100%;
+    min-height: 25rem !important;
+    margin: 0 auto;
+    overflow: hidden;
+    transform: none !important;
+  }
+
+  .portrait-image {
+    width: min(74vw, 17rem) !important;
+    max-width: 100%;
+  }
+
+  .portrait-halo {
+    width: min(70vw, 15.5rem) !important;
+    height: min(70vw, 15.5rem) !important;
+  }
+
+  .orbit-one {
+    width: min(88vw, 21rem) !important;
+    height: min(88vw, 21rem) !important;
+  }
+
+  .orbit-two {
+    width: min(72vw, 17rem) !important;
+    height: min(72vw, 17rem) !important;
+  }
+
+  .orbit-three {
+    width: min(56vw, 13rem) !important;
+    height: min(56vw, 13rem) !important;
+  }
+
+  .laptop {
+    width: min(78vw, 18rem) !important;
+    height: 9rem !important;
+  }
+
+  .laptop span {
+    width: min(86vw, 20rem) !important;
+  }
+
+  .right-panel {
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0;
+    display: grid;
+    gap: 1.3rem;
+    overflow: visible;
+  }
+
+  .tech-panel,
+  .preview-area {
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0;
+    overflow: visible;
+  }
+
+  .tech-panel .eyebrow,
+  .preview-area .eyebrow {
+    max-width: 100%;
+    font-size: 0.6rem !important;
+    letter-spacing: 0.14em !important;
+    line-height: 1.5;
+    white-space: normal;
+  }
+
+  .tech-grid {
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem !important;
+    overflow: visible;
+  }
+
+  .tech-card {
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0 !important;
+    min-height: 5.8rem;
+    padding: 0.85rem;
+  }
+
+  .tech-icon {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
+  .tech-logo {
+    width: 1.65rem;
+    height: 1.65rem;
+  }
+
+  .devices-wrap {
+    position: relative;
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0;
+    min-height: auto !important;
+    display: grid !important;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    overflow: visible !important;
+  }
+
+  .browser-card {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0 !important;
+    min-height: auto !important;
+    display: grid !important;
+    grid-template-columns: 4.3rem minmax(0, 1fr) !important;
+    overflow: hidden !important;
+    border-radius: 1rem;
+  }
+
+  .browser-sidebar {
+    width: 4.3rem !important;
+    min-width: 4.3rem !important;
+    padding: 0.75rem 0.4rem !important;
+    overflow: hidden;
+  }
+
+  .browser-sidebar p {
+    font-size: 0.55rem !important;
+  }
+
+  .browser-sidebar span {
+    font-size: 0 !important;
+  }
+
+  .browser-sidebar .layout-dot {
+    display: inline-block;
+  }
+
+  .mini-logo {
+    width: 1.8rem !important;
+    height: 1.8rem !important;
+    font-size: 0.62rem !important;
+  }
+
+  .browser-content {
+    width: 100%;
+    min-width: 0;
+    padding: 0.75rem !important;
+    overflow: hidden;
+  }
+
+  .browser-toolbar {
+    gap: 0.5rem;
+  }
+
+  .browser-toolbar h3 {
+    font-size: 0.82rem !important;
+    line-height: 1.15;
+  }
+
+  .toolbar-actions {
+    display: none !important;
+  }
+
+  .stat-row {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+  }
+
+  .stat-card {
+    min-height: 2.4rem;
+    padding: 0.55rem !important;
+  }
+
+  .chart-card {
+    min-height: 6rem;
+    overflow: hidden;
+  }
+
+  .activity-card {
+    display: none !important;
+  }
+
+  .mobile-card {
+    position: relative !important;
+    right: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+    top: auto !important;
+    width: min(100%, 13rem) !important;
+    margin: 1rem auto 0 !important;
+    transform: none !important;
+  }
+
+  .contact-bar {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    max-width: 100%;
+    margin: 1.2rem auto 0 !important;
+    padding: 1rem !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    border-radius: 1rem;
+  }
+
+  .contact-item {
+    width: 100%;
+    min-width: 0;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .contact-item:last-of-type {
+    border-bottom: none;
+  }
+
+  .contact-item span {
+    font-size: 0.62rem !important;
+    letter-spacing: 0.16em !important;
+  }
+
+  .contact-item strong {
+    font-size: 0.9rem !important;
+    line-height: 1.3;
+    word-break: break-word;
+  }
+
+  .connect-button {
+    width: 100% !important;
+    min-width: 0;
+    justify-content: center;
+  }
+}
+
+/* ===== CELULARES MUY PEQUEÑOS ===== */
+@media (max-width: 430px) {
+  .portfolio-page {
+    padding: 0.85rem;
+  }
+
+  .top-header {
+    gap: 0.55rem;
+  }
+
+  .brand {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
+  .brand-logo {
+    width: 2.35rem;
+    height: 2.35rem;
+  }
+
+  .main-nav {
+    max-width: calc(100vw - 4.4rem);
+    height: 2.8rem;
+    padding: 0 0.65rem;
+    gap: 0.85rem;
+  }
+
+  .main-nav a {
+    font-size: 0.56rem !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(2.65rem, 16vw, 3.65rem) !important;
+  }
+
+  .hero-copy h1 span {
+    font-size: clamp(2.45rem, 15vw, 3.35rem) !important;
+  }
+
+  .hero-copy h2 {
+    font-size: clamp(1.05rem, 6vw, 1.45rem) !important;
+  }
+
+  .portrait-wrap {
+    min-height: 22rem !important;
+  }
+
+  .portrait-image {
+    width: min(72vw, 14.5rem) !important;
+  }
+
+  .portrait-halo {
+    width: min(68vw, 13rem) !important;
+    height: min(68vw, 13rem) !important;
+  }
+
+  .laptop {
+    width: min(76vw, 15rem) !important;
+    height: 7.7rem !important;
+  }
+
+  .laptop span {
+    width: min(84vw, 16.7rem) !important;
+  }
+
+  .browser-card {
+    grid-template-columns: 3.6rem minmax(0, 1fr) !important;
+  }
+
+  .browser-sidebar {
+    width: 3.6rem !important;
+    min-width: 3.6rem !important;
+  }
+
+  .browser-content {
+    padding: 0.65rem !important;
+  }
+
+  .chart-card {
+    min-height: 5rem;
+  }
+
+  .mobile-card {
+    width: min(100%, 12rem) !important;
+  }
+}
+
+
+/* =========================================================
+   FIX CELULAR INICIO - SIN IMÁGENES Y TEXTOS CUADRADOS
+   Pegar al final de Inicio.css
+========================================================= */
+
+@media (max-width: 640px) {
+  .portfolio-page {
+    padding: 1rem !important;
+    overflow-x: hidden !important;
+  }
+
+  .top-header {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    align-items: center;
+    gap: 0.7rem;
+    overflow: hidden;
+  }
+
+  .brand {
+    flex: 0 0 auto;
+  }
+
+  .main-nav {
+    flex: 1;
+    max-width: calc(100vw - 4.7rem);
+    height: 2.9rem;
+    padding: 0 0.8rem;
+    overflow-x: auto;
+    justify-content: flex-start !important;
+    scrollbar-width: none;
+  }
+
+  .main-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .main-nav a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    font-size: 0.58rem !important;
+    letter-spacing: 0.11em !important;
+  }
+
+  .hero-layout {
+    width: 100% !important;
+    margin-top: 1.8rem !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .hero-copy {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    text-align: left;
+    overflow: hidden;
+  }
+
+  .hero-copy .eyebrow,
+  .eyebrow.light {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0.85rem;
+    font-size: 0.62rem !important;
+    letter-spacing: 0.15em !important;
+    line-height: 1.5;
+    white-space: normal !important;
+    overflow-wrap: break-word;
+  }
+
+  .hero-copy h1 {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    font-size: clamp(3.05rem, 15vw, 4.2rem) !important;
+    line-height: 0.92 !important;
+    letter-spacing: -0.045em;
+    white-space: normal !important;
+    overflow-wrap: normal;
+  }
+
+  .hero-copy h1 span {
+    display: block;
+    font-size: clamp(2.75rem, 14vw, 3.8rem) !important;
+    line-height: 0.82 !important;
+  }
+
+  .hero-copy h2 {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 1rem;
+    font-size: clamp(1.15rem, 5.8vw, 1.6rem) !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.12em !important;
+    white-space: normal !important;
+    overflow-wrap: break-word;
+  }
+
+  .title-line {
+    width: 5rem;
+    margin: 1rem 0;
+  }
+
+  .hero-description {
+    width: 100%;
+    max-width: 100%;
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+    white-space: normal !important;
+    overflow-wrap: break-word;
+  }
+
+  .hero-copy blockquote {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 1.1rem;
+    overflow: hidden;
+  }
+
+  .hero-copy blockquote svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .hero-copy blockquote p {
+    max-width: 100%;
+    font-size: 0.86rem !important;
+    line-height: 1.55 !important;
+    white-space: normal !important;
+    overflow-wrap: break-word;
+  }
+
+  /* Ocultar imagen/personaje/laptop en celular */
+  .portrait-wrap {
+    display: none !important;
+  }
+
+  /* Panel derecho ordenado */
+  .right-panel {
+    width: 100% !important;
+    max-width: 100%;
+    display: grid !important;
+    gap: 1.2rem;
+    overflow: hidden;
+  }
+
+  .tech-panel {
+    width: 100% !important;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .tech-panel .eyebrow,
+  .eyebrow.dark {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-size: 0.62rem !important;
+    letter-spacing: 0.14em !important;
+    line-height: 1.5;
+    white-space: normal !important;
+  }
+
+  .tech-grid {
+    width: 100% !important;
+    max-width: 100%;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.75rem !important;
+    overflow: hidden;
+  }
+
+  .tech-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 6rem;
+    padding: 0.75rem 0.45rem;
+    border-radius: 0.9rem;
+  }
+
+  .tech-icon {
+    width: 2.65rem !important;
+    height: 2.65rem !important;
+  }
+
+  .tech-logo {
+    width: 1.55rem !important;
+    height: 1.55rem !important;
+  }
+
+  .tech-card strong {
+    max-width: 100%;
+    font-size: 0.75rem !important;
+    line-height: 1.2;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+
+  .tech-card small {
+    font-size: 0.62rem !important;
+  }
+
+  /* Ocultar dashboard y celular mockup en celular */
+  .preview-area {
+    display: none !important;
+  }
+
+  /* Contacto bien cuadrado */
+  .contact-bar {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100%;
+    margin: 1.2rem auto 0 !important;
+    padding: 1rem !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.9rem !important;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .contact-item {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .contact-item:last-of-type {
+    border-bottom: none;
+  }
+
+  .contact-icon {
+    flex: 0 0 auto;
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+
+  .contact-item div {
+    min-width: 0;
+  }
+
+  .contact-item span {
+    display: block;
+    font-size: 0.6rem !important;
+    letter-spacing: 0.14em !important;
+    line-height: 1.3;
+    white-space: normal;
+  }
+
+  .contact-item strong {
+    display: block;
+    max-width: 100%;
+    font-size: 0.88rem !important;
+    line-height: 1.35;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  .connect-button {
+    width: 100% !important;
+    min-width: 0;
+    height: 3.35rem;
+    justify-content: center;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.15em !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-copy h1 {
+    font-size: clamp(2.65rem, 15vw, 3.45rem) !important;
+  }
+
+  .hero-copy h1 span {
+    font-size: clamp(2.45rem, 14vw, 3.15rem) !important;
+  }
+
+  .hero-copy h2 {
+    font-size: clamp(1rem, 5.8vw, 1.35rem) !important;
+  }
+
+  .hero-description,
+  .hero-copy blockquote p {
+    font-size: 0.82rem !important;
+  }
+
+  .tech-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .tech-card {
+    min-height: 5.7rem;
+  }
+}
+
+
+
+/* =========================================================
+   FIX FINAL MOBILE INICIO - CENTRAR TEXTOS E ICONOS
+   Pegar al final de Inicio.css
+========================================================= */
+
+@media (max-width: 640px) {
+  /* Centrar bloque principal */
+  .hero-copy {
+    text-align: center !important;
+    overflow: visible !important;
+  }
+
+  .hero-copy .eyebrow,
+  .eyebrow.light {
+    text-align: center !important;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-copy h1 {
+    text-align: center !important;
+    font-size: clamp(2.9rem, 14vw, 3.9rem) !important;
+    line-height: 0.9 !important;
+  }
+
+  .hero-copy h1 span {
+    text-align: center !important;
+    font-size: clamp(2.6rem, 13vw, 3.55rem) !important;
+  }
+
+  .hero-copy h2 {
+    max-width: 100% !important;
+    text-align: center !important;
+    font-size: clamp(1rem, 5vw, 1.35rem) !important;
+    line-height: 1.4 !important;
+    letter-spacing: 0.12em !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .title-line {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .hero-description,
+  .hero-copy blockquote p {
+    text-align: center !important;
+    max-width: 100% !important;
+  }
+
+  .hero-copy blockquote {
+    display: grid !important;
+    justify-items: center !important;
+  }
+
+  /* Título de tecnologías */
+  .tech-panel .eyebrow,
+  .eyebrow.dark {
+    text-align: center !important;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  /* Cards de tecnologías bien centradas */
+  .tech-grid {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem !important;
+  }
+
+  .tech-card {
+    width: 100% !important;
+    min-height: 6.9rem !important;
+    padding: 1rem !important;
+    border-radius: 1rem !important;
+
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    place-items: center !important;
+    justify-content: center !important;
+    align-content: center !important;
+    text-align: center !important;
+    gap: 0.35rem !important;
+
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.54)),
+      rgba(255, 255, 255, 0.45) !important;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.35),
+      0 16px 34px rgba(0, 0, 0, 0.18) !important;
+    backdrop-filter: blur(18px);
+  }
+
+  .tech-icon {
+    margin: 0 auto !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    display: grid !important;
+    place-items: center !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  .tech-logo {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 auto !important;
+  }
+
+  .tech-card strong {
+    display: block !important;
+    width: 100%;
+    margin: 0 !important;
+    color: #171b32 !important;
+    font-size: 0.82rem !important;
+    font-weight: 900 !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+  }
+
+  .tech-card small {
+    display: block !important;
+    width: 100%;
+    margin: 0 !important;
+    color: #6b7088 !important;
+    font-size: 0.67rem !important;
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+  }
+}
+
+/* Celulares muy pequeños */
+@media (max-width: 420px) {
+  .hero-copy h1 {
+    font-size: clamp(2.55rem, 14vw, 3.25rem) !important;
+  }
+
+  .hero-copy h1 span {
+    font-size: clamp(2.35rem, 13vw, 3rem) !important;
+  }
+
+  .hero-copy h2 {
+    font-size: clamp(0.95rem, 5vw, 1.2rem) !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  .tech-card {
+    min-height: 6.4rem !important;
+  }
+}
+
+
+/* =========================================================
+   FIX DEFINITIVO MOBILE INICIO
+   Centra textos, cards e iconos y evita que se corten
+========================================================= */
+
+@media screen and (max-width: 640px) {
+  html,
+  body,
+  #root {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  .portfolio-page {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding: 1rem !important;
+    overflow-x: hidden !important;
+  }
+
+  .hero-layout,
+  .hero-copy,
+  .right-panel,
+  .tech-panel,
+  .tech-grid,
+  .contact-bar {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    transform: none !important;
+    left: auto !important;
+    right: auto !important;
+    overflow-x: hidden !important;
+  }
+
+  /* HEADER */
+  .top-header {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) !important;
+    gap: 0.7rem !important;
+    align-items: center !important;
+    overflow: hidden !important;
+  }
+
+  .brand {
+    width: 2.8rem !important;
+    height: 2.8rem !important;
+    flex: 0 0 auto !important;
+  }
+
+  .brand-logo {
+    width: 2.35rem !important;
+    height: 2.35rem !important;
+  }
+
+  .main-nav {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: 2.8rem !important;
+    padding: 0 0.75rem !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    gap: 0.9rem !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap !important;
+    scrollbar-width: none !important;
+  }
+
+  .main-nav::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .main-nav a {
+    flex: 0 0 auto !important;
+    font-size: 0.56rem !important;
+    letter-spacing: 0.1em !important;
+    white-space: nowrap !important;
+  }
+
+  /* HERO TEXTO */
+  .hero-layout {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem !important;
+    margin-top: 1.8rem !important;
+  }
+
+  .hero-copy {
+    text-align: center !important;
+  }
+
+  .hero-copy .eyebrow,
+  .eyebrow.light {
+    width: 100% !important;
+    text-align: center !important;
+    margin: 0 auto 0.8rem !important;
+    font-size: 0.62rem !important;
+    letter-spacing: 0.14em !important;
+    line-height: 1.5 !important;
+    white-space: normal !important;
+  }
+
+  .hero-copy h1 {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    font-size: clamp(2.7rem, 13vw, 3.55rem) !important;
+    line-height: 0.9 !important;
+    letter-spacing: -0.04em !important;
+    white-space: normal !important;
+    overflow: visible !important;
+  }
+
+  .hero-copy h1 span {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-size: clamp(2.45rem, 12vw, 3.25rem) !important;
+    line-height: 0.85 !important;
+  }
+
+  .hero-copy h2 {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 1rem auto 0 !important;
+    text-align: center !important;
+    font-size: clamp(0.95rem, 4.8vw, 1.28rem) !important;
+    line-height: 1.45 !important;
+    letter-spacing: 0.1em !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .title-line {
+    margin: 1rem auto !important;
+  }
+
+  .hero-description {
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    font-size: 0.86rem !important;
+    line-height: 1.6 !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .hero-copy blockquote {
+    width: 100% !important;
+    display: grid !important;
+    justify-items: center !important;
+    text-align: center !important;
+  }
+
+  .hero-copy blockquote p {
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    font-size: 0.82rem !important;
+    line-height: 1.55 !important;
+    overflow-wrap: break-word !important;
+  }
+
+  /* OCULTAR IMAGEN EN CELULAR */
+  .portrait-wrap {
+    display: none !important;
+  }
+
+  /* TECNOLOGÍAS */
+  .tech-panel {
+    margin-top: 0.8rem !important;
+    text-align: center !important;
+  }
+
+  .tech-panel .eyebrow,
+  .eyebrow.dark {
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    margin: 0 auto 1rem !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-size: 0.62rem !important;
+    letter-spacing: 0.13em !important;
+    line-height: 1.5 !important;
+    white-space: normal !important;
+  }
+
+  .tech-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    justify-items: stretch !important;
+    align-items: stretch !important;
+    gap: 0.85rem !important;
+  }
+
+  .tech-grid .tech-card,
+  .tech-card {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 6.8rem !important;
+    margin: 0 !important;
+    padding: 1rem !important;
+    border-radius: 1rem !important;
+    transform: none !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 0.35rem !important;
+
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.68)),
+      rgba(255, 255, 255, 0.58) !important;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.38),
+      0 16px 34px rgba(0, 0, 0, 0.16) !important;
+    backdrop-filter: blur(18px) !important;
+  }
+
+  .tech-card *,
+  .tech-card *::before,
+  .tech-card *::after {
+    position: static !important;
+    transform: none !important;
+  }
+
+  .tech-card .tech-icon,
+  .tech-icon {
+    width: 3rem !important;
+    height: 3rem !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: grid !important;
+    place-items: center !important;
+    flex: 0 0 auto !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+  }
+
+  .tech-card .tech-logo,
+  .tech-logo {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    display: block !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+  }
+
+  .tech-card strong {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #171b32 !important;
+    font-size: 0.82rem !important;
+    font-weight: 900 !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+  }
+
+  .tech-card small {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #666d86 !important;
+    font-size: 0.66rem !important;
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+  }
+
+  /* OCULTAR PREVIEW EN CELULAR */
+  .preview-area,
+  .devices-wrap,
+  .browser-card,
+  .mobile-card {
+    display: none !important;
+  }
+
+  /* CONTACTO */
+  .contact-bar {
+    position: relative !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.9rem !important;
+    margin-top: 1.2rem !important;
+    padding: 1rem !important;
+    border-radius: 1rem !important;
+    overflow: hidden !important;
+  }
+
+  .contact-item {
+    width: 100% !important;
+    min-width: 0 !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 0.85rem !important;
+    padding-bottom: 0.9rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  }
+
+  .contact-item:last-of-type {
+    border-bottom: none !important;
+  }
+
+  .contact-item div {
+    min-width: 0 !important;
+  }
+
+  .contact-item span {
+    font-size: 0.6rem !important;
+    letter-spacing: 0.14em !important;
+  }
+
+  .contact-item strong {
+    font-size: 0.88rem !important;
+    line-height: 1.35 !important;
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .connect-button {
+    width: 100% !important;
+    height: 3.35rem !important;
+    justify-content: center !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.15em !important;
+  }
+}
+
+/* =========================================================
+   MOBILE TECH CARDS MÁS PEQUEÑAS + ANIMACIONES
+   Pegar al final de Inicio.css
+========================================================= */
+
+@media screen and (max-width: 640px) {
+  .tech-grid {
+    gap: 0.7rem !important;
+  }
+
+  .tech-grid .tech-card,
+  .tech-card {
+    min-height: 4.9rem !important;
+    padding: 0.65rem 0.8rem !important;
+    border-radius: 0.85rem !important;
+    gap: 0.22rem !important;
+
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(230, 228, 240, 0.76)),
+      rgba(255, 255, 255, 0.72) !important;
+
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.5),
+      0 10px 22px rgba(0, 0, 0, 0.14) !important;
+
+    animation: techCardMobileIn 0.65s ease both;
+    transition:
+      transform 0.28s ease,
+      box-shadow 0.28s ease,
+      background 0.28s ease;
+  }
+
+  .tech-grid .tech-card:nth-child(1) {
+    animation-delay: 0.04s;
+  }
+
+  .tech-grid .tech-card:nth-child(2) {
+    animation-delay: 0.08s;
+  }
+
+  .tech-grid .tech-card:nth-child(3) {
+    animation-delay: 0.12s;
+  }
+
+  .tech-grid .tech-card:nth-child(4) {
+    animation-delay: 0.16s;
+  }
+
+  .tech-grid .tech-card:nth-child(5) {
+    animation-delay: 0.2s;
+  }
+
+  .tech-grid .tech-card:nth-child(6) {
+    animation-delay: 0.24s;
+  }
+
+  .tech-grid .tech-card:nth-child(7) {
+    animation-delay: 0.28s;
+  }
+
+  .tech-grid .tech-card:nth-child(8) {
+    animation-delay: 0.32s;
+  }
+
+  .tech-grid .tech-card:hover {
+    transform: translateY(-4px) scale(1.015) !important;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.65),
+      0 16px 32px rgba(177, 115, 255, 0.18) !important;
+  }
+
+  .tech-card .tech-icon,
+  .tech-icon {
+    width: 2.35rem !important;
+    height: 2.35rem !important;
+    margin-bottom: 0.15rem !important;
+    box-shadow:
+      0 8px 18px rgba(0, 0, 0, 0.08),
+      0 0 18px rgba(185, 124, 255, 0.12);
+    animation: techIconFloat 3.2s ease-in-out infinite;
+  }
+
+  .tech-card .tech-logo,
+  .tech-logo {
+    width: 1.35rem !important;
+    height: 1.35rem !important;
+  }
+
+  .tech-card strong {
+    font-size: 0.75rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .tech-card small {
+    font-size: 0.58rem !important;
+    line-height: 1.15 !important;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .tech-grid .tech-card,
+  .tech-card {
+    min-height: 4.65rem !important;
+    padding: 0.58rem 0.7rem !important;
+  }
+
+  .tech-card .tech-icon,
+  .tech-icon {
+    width: 2.15rem !important;
+    height: 2.15rem !important;
+  }
+
+  .tech-card .tech-logo,
+  .tech-logo {
+    width: 1.22rem !important;
+    height: 1.22rem !important;
+  }
+
+  .tech-card strong {
+    font-size: 0.7rem !important;
+  }
+
+  .tech-card small {
+    font-size: 0.55rem !important;
+  }
+}
+
+/* Animación de entrada */
+@keyframes techCardMobileIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Animación suave del icono */
+@keyframes techIconFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+
+/* =========================================================
+   MOBILE TECH CARDS MÁS PEQUEÑAS + ICONOS FLOTANTES
+========================================================= */
+
+@media screen and (max-width: 640px) {
+  .tech-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.7rem !important;
+    align-items: stretch !important;
+  }
+
+  .tech-card {
+    min-height: 4.3rem !important;
+    padding: 0.55rem 0.45rem !important;
+    border-radius: 0.85rem !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 0.18rem !important;
+
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.92), rgba(236,233,245,0.80)),
+      rgba(255,255,255,0.82) !important;
+
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,0.45),
+      0 10px 24px rgba(0,0,0,0.12) !important;
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  }
+
+  .tech-card:hover {
+    transform: translateY(-3px) !important;
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,0.55),
+      0 14px 26px rgba(160, 105, 255, 0.16) !important;
+  }
+
+  .tech-icon {
+    width: 2rem !important;
+    height: 2rem !important;
+    margin: 0 auto 0.1rem auto !important;
+    border-radius: 999px !important;
+    display: grid !important;
+    place-items: center !important;
+    background: rgba(255,255,255,0.92) !important;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08) !important;
+
+    animation: techFloat 3s ease-in-out infinite;
+  }
+
+  .tech-logo {
+    width: 1.1rem !important;
+    height: 1.1rem !important;
+    object-fit: contain !important;
+  }
+
+  .tech-card strong {
+    font-size: 0.72rem !important;
+    line-height: 1.1 !important;
+    margin: 0 !important;
+    color: #1f2338 !important;
+    font-weight: 800 !important;
+  }
+
+  .tech-card small {
+    font-size: 0.56rem !important;
+    line-height: 1.1 !important;
+    margin: 0 !important;
+    color: #6d7288 !important;
+    font-weight: 700 !important;
+  }
+
+  /* Diferentes tiempos para que no todos floten igual */
+  .tech-card:nth-child(1) .tech-icon { animation-delay: 0s; }
+  .tech-card:nth-child(2) .tech-icon { animation-delay: 0.2s; }
+  .tech-card:nth-child(3) .tech-icon { animation-delay: 0.4s; }
+  .tech-card:nth-child(4) .tech-icon { animation-delay: 0.6s; }
+  .tech-card:nth-child(5) .tech-icon { animation-delay: 0.8s; }
+  .tech-card:nth-child(6) .tech-icon { animation-delay: 1s; }
+  .tech-card:nth-child(7) .tech-icon { animation-delay: 1.2s; }
+  .tech-card:nth-child(8) .tech-icon { animation-delay: 1.4s; }
+}
+
+@media screen and (max-width: 420px) {
+  .tech-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.6rem !important;
+  }
+
+  .tech-card {
+    min-height: 4rem !important;
+    padding: 0.5rem 0.35rem !important;
+  }
+
+  .tech-icon {
+    width: 1.8rem !important;
+    height: 1.8rem !important;
+  }
+
+  .tech-logo {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+
+  .tech-card strong {
+    font-size: 0.67rem !important;
+  }
+
+  .tech-card small {
+    font-size: 0.52rem !important;
+  }
+}
+
+@keyframes techFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+
+/* =========================================================
+   MOSTRAR DASHBOARD PREVIEW EN RESPONSIVE + EFECTO 3D
+   Pegar al final de Inicio.css
+========================================================= */
+
+@media screen and (max-width: 640px) {
+  .preview-area,
+  .devices-wrap,
+  .browser-card,
+  .mobile-card {
+    display: block !important;
+  }
+
+  .preview-area {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 1.4rem !important;
+    overflow: visible !important;
+  }
+
+  .preview-area .eyebrow {
+    width: 100% !important;
+    margin: 0 0 1rem !important;
+    text-align: center !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 0.58rem !important;
+    letter-spacing: 0.18em !important;
+    line-height: 1.5 !important;
+  }
+
+  .devices-wrap {
+    position: relative !important;
+    width: 100% !important;
+    min-height: 17.5rem !important;
+    padding: 0.4rem 0 2rem !important;
+    perspective: 900px;
+    overflow: visible !important;
+  }
+
+  .browser-card {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 14.5rem !important;
+    display: grid !important;
+    grid-template-columns: 4.6rem minmax(0, 1fr) !important;
+    border-radius: 1.05rem !important;
+    overflow: hidden !important;
+
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(240, 237, 250, 0.82)),
+      rgba(255, 255, 255, 0.82) !important;
+
+    box-shadow:
+      0 22px 45px rgba(0, 0, 0, 0.24),
+      0 0 40px rgba(185, 124, 255, 0.14) !important;
+
+    transform: rotateX(5deg) rotateY(-4deg);
+    transform-style: preserve-3d;
+    animation: dashboardFloat3D 4.5s ease-in-out infinite;
+  }
+
+  .browser-sidebar {
+    width: 4.6rem !important;
+    min-width: 4.6rem !important;
+    padding: 0.75rem 0.42rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.55rem !important;
+    background: #071026 !important;
+    overflow: hidden !important;
+  }
+
+  .browser-sidebar .mini-logo {
+    width: 2rem !important;
+    height: 2rem !important;
+    font-size: 0.65rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .browser-sidebar p {
+    display: block !important;
+    color: #ffffff !important;
+    font-size: 0.55rem !important;
+    font-weight: 900 !important;
+    line-height: 1.1 !important;
+    margin: 0 !important;
+  }
+
+  .browser-sidebar span {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-size: 0.46rem !important;
+    font-weight: 800 !important;
+    line-height: 1.1 !important;
+  }
+
+  .browser-sidebar span.active {
+    min-height: 1.35rem !important;
+    padding: 0 0.35rem !important;
+    border-radius: 0.42rem !important;
+    background: #b97cff !important;
+    color: #ffffff !important;
+  }
+
+  .layout-dot {
+    width: 0.3rem !important;
+    height: 0.3rem !important;
+    flex: 0 0 auto !important;
+  }
+
+  .browser-content {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 0.8rem !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    overflow: hidden !important;
+  }
+
+  .browser-toolbar {
+    display: flex !important;
+    justify-content: space-between !important;
+    gap: 0.6rem !important;
+    margin-bottom: 0.65rem !important;
+  }
+
+  .browser-toolbar small {
+    color: #7c8195 !important;
+    font-size: 0.55rem !important;
+  }
+
+  .browser-toolbar h3 {
+    color: #11162c !important;
+    font-size: 0.78rem !important;
+    line-height: 1.1 !important;
+    margin: 0.1rem 0 0 !important;
+  }
+
+  .toolbar-actions {
+    display: none !important;
+  }
+
+  .stat-row {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 0.45rem !important;
+    margin-bottom: 0.65rem !important;
+  }
+
+  .stat-card {
+    min-height: 2.7rem !important;
+    padding: 0.45rem !important;
+    border-radius: 0.55rem !important;
+    background: #ffffff !important;
+  }
+
+  .stat-card small {
+    font-size: 0.48rem !important;
+    line-height: 1.1 !important;
+  }
+
+  .stat-card strong {
+    font-size: 0.75rem !important;
+    line-height: 1.1 !important;
+  }
+
+  .chart-card {
+    min-height: 4.7rem !important;
+    padding: 0.55rem !important;
+    border-radius: 0.65rem !important;
+    background: #ffffff !important;
+    overflow: hidden !important;
+  }
+
+  .chart-header strong {
+    font-size: 0.58rem !important;
+    color: #171b32 !important;
+  }
+
+  .chart-header span {
+    display: none !important;
+  }
+
+  .chart-line {
+    height: 3.5rem !important;
+  }
+
+  .activity-card {
+    position: absolute !important;
+    right: 1.2rem !important;
+    bottom: 1.1rem !important;
+    width: 8.4rem !important;
+    min-height: 4.4rem !important;
+    padding: 0.55rem !important;
+    display: block !important;
+    border-radius: 0.7rem !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12) !important;
+    backdrop-filter: blur(12px);
+  }
+
+  .activity-card strong {
+    display: block !important;
+    color: #171b32 !important;
+    font-size: 0.52rem !important;
+    margin-bottom: 0.35rem !important;
+  }
+
+  .activity-card p {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    color: #646b82 !important;
+    font-size: 0.45rem !important;
+    line-height: 1.15 !important;
+    margin: 0.2rem 0 !important;
+  }
+
+  .mobile-card {
+    position: absolute !important;
+    right: -0.2rem !important;
+    top: 2.1rem !important;
+    width: 5.9rem !important;
+    min-height: 10.4rem !important;
+    margin: 0 !important;
+    padding: 0.65rem 0.45rem !important;
+    border-radius: 0.9rem !important;
+
+    background: rgba(255, 255, 255, 0.94) !important;
+    box-shadow:
+      0 16px 34px rgba(0, 0, 0, 0.24),
+      0 0 18px rgba(185, 124, 255, 0.14) !important;
+
+    transform: rotateY(-10deg) rotateX(4deg) scale(0.92) !important;
+    transform-style: preserve-3d;
+    animation: phoneFloat3D 4s ease-in-out infinite;
+    animation-delay: 0.4s;
+    z-index: 5 !important;
+  }
+
+  .phone-notch {
+    width: 1.35rem !important;
+    height: 0.18rem !important;
+    margin-bottom: 0.35rem !important;
+  }
+
+  .phone-time {
+    font-size: 0.38rem !important;
+    margin: 0 !important;
+  }
+
+  .mobile-card h4 {
+    font-size: 0.52rem !important;
+    line-height: 1.1 !important;
+    margin: 0.2rem 0 !important;
+  }
+
+  .mobile-card small {
+    display: block !important;
+    font-size: 0.38rem !important;
+    margin: 0.25rem 0 !important;
+  }
+
+  .phone-task {
+    min-height: 1rem !important;
+    padding: 0.22rem !important;
+    border-radius: 0.4rem !important;
+    gap: 0.2rem !important;
+    margin-bottom: 0.22rem !important;
+  }
+
+  .phone-task span {
+    width: 0.32rem !important;
+    height: 0.32rem !important;
+  }
+
+  .phone-task p {
+    font-size: 0.34rem !important;
+    line-height: 1.1 !important;
+  }
+
+  .quick-row {
+    gap: 0.2rem !important;
+  }
+
+  .quick-row button {
+    min-height: 1.45rem !important;
+    padding: 0.2rem !important;
+    border-radius: 0.35rem !important;
+    font-size: 0.32rem !important;
+  }
+
+  .quick-row svg {
+    width: 0.65rem !important;
+    height: 0.65rem !important;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .devices-wrap {
+    min-height: 16rem !important;
+  }
+
+  .browser-card {
+    min-height: 13.3rem !important;
+    grid-template-columns: 4rem minmax(0, 1fr) !important;
+  }
+
+  .browser-sidebar {
+    width: 4rem !important;
+    min-width: 4rem !important;
+  }
+
+  .browser-sidebar p {
+    font-size: 0.48rem !important;
+  }
+
+  .browser-sidebar span {
+    font-size: 0.4rem !important;
+  }
+
+  .browser-content {
+    padding: 0.65rem !important;
+  }
+
+  .mobile-card {
+    width: 5.3rem !important;
+    top: 2rem !important;
+    right: -0.45rem !important;
+    transform: rotateY(-10deg) rotateX(4deg) scale(0.84) !important;
+  }
+
+  .activity-card {
+    width: 7.5rem !important;
+    right: 0.75rem !important;
+    bottom: 0.9rem !important;
+  }
+}
+
+/* Animación dashboard flotante */
+@keyframes dashboardFloat3D {
+  0%,
+  100% {
+    transform: rotateX(5deg) rotateY(-4deg) translateY(0);
+  }
+
+  50% {
+    transform: rotateX(6deg) rotateY(-2deg) translateY(-8px);
+  }
+}
+
+/* Animación celular flotante */
+@keyframes phoneFloat3D {
+  0%,
+  100% {
+    transform: rotateY(-10deg) rotateX(4deg) scale(0.92) translateY(0);
+  }
+
+  50% {
+    transform: rotateY(-6deg) rotateX(6deg) scale(0.92) translateY(-7px);
+  }
+}
+
+/* =========================================================
+   DESKTOP DASHBOARD PREVIEW - EFECTO 3D / FLOTANTE
+   Pegar al final de Inicio.css
+========================================================= */
+
+@media screen and (min-width: 641px) {
+  .preview-area {
+    perspective: 1200px;
+    transform-style: preserve-3d;
+  }
+
+  .devices-wrap {
+    position: relative;
+    transform-style: preserve-3d;
+    animation: previewFloatSoft 5.5s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .browser-card {
+    transform:
+      rotateX(4deg)
+      rotateY(-5deg)
+      translateZ(0);
+    transform-style: preserve-3d;
+    animation: browserFloat3D 6s ease-in-out infinite;
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.35s ease,
+      filter 0.35s ease;
+    will-change: transform;
+  }
+
+  .browser-card:hover {
+    transform:
+      rotateX(2deg)
+      rotateY(-2deg)
+      translateY(-8px)
+      scale(1.015);
+    box-shadow:
+      0 28px 65px rgba(0, 0, 0, 0.18),
+      0 0 45px rgba(178, 117, 255, 0.24);
+    filter: saturate(1.05);
+  }
+
+  .mobile-card {
+    transform:
+      rotateY(-12deg)
+      rotateX(4deg)
+      translateZ(36px);
+    transform-style: preserve-3d;
+    animation: phoneFloatDesktop3D 4.8s ease-in-out infinite;
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.35s ease;
+    will-change: transform;
+  }
+
+  .mobile-card:hover {
+    transform:
+      rotateY(-6deg)
+      rotateX(2deg)
+      translateY(-8px)
+      translateZ(48px)
+      scale(1.025);
+    box-shadow:
+      0 24px 55px rgba(0, 0, 0, 0.22),
+      0 0 34px rgba(178, 117, 255, 0.22);
+  }
+
+  .activity-card {
+    transform: translateZ(52px);
+    animation: activityFloat3D 4.4s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .chart-line {
+    animation: chartGlowMove 3.8s ease-in-out infinite;
+  }
+}
+
+/* Movimiento general del bloque */
+@keyframes previewFloatSoft {
+  0%,
+  100% {
+    transform: translateY(0) rotateZ(0deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotateZ(-0.25deg);
+  }
+}
+
+/* Movimiento 3D del dashboard */
+@keyframes browserFloat3D {
+  0%,
+  100% {
+    transform: rotateX(4deg) rotateY(-5deg) translateY(0);
+  }
+
+  50% {
+    transform: rotateX(5.5deg) rotateY(-3deg) translateY(-10px);
+  }
+}
+
+/* Movimiento 3D del celular */
+@keyframes phoneFloatDesktop3D {
+  0%,
+  100% {
+    transform: rotateY(-12deg) rotateX(4deg) translateZ(36px) translateY(0);
+  }
+
+  50% {
+    transform: rotateY(-7deg) rotateX(6deg) translateZ(44px) translateY(-12px);
+  }
+}
+
+/* Movimiento tarjeta de actividad */
+@keyframes activityFloat3D {
+  0%,
+  100% {
+    transform: translateZ(52px) translateY(0);
+  }
+
+  50% {
+    transform: translateZ(62px) translateY(-7px);
+  }
+}
+
+/* Brillo suave de gráfico */
+@keyframes chartGlowMove {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(178, 117, 255, 0));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 8px rgba(178, 117, 255, 0.35));
+  }
+}
+
+/* Reducir movimiento para usuarios con accesibilidad activada */
+@media (prefers-reduced-motion: reduce) {
+  .devices-wrap,
+  .browser-card,
+  .mobile-card,
+  .activity-card,
+  .chart-line {
+    animation: none !important;
+  }
+}
+
+
+
+/* =========================================================
+   BOTÓN VER CV - HERO INICIO
+========================================================= */
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.4rem 0 1.2rem;
+}
+
+.cv-button {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+
+  min-width: 9.5rem;
+  height: 3.15rem;
+  padding: 0 1.35rem;
+  border-radius: 999px;
+
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  background:
+    linear-gradient(135deg, #b879ff 0%, #9b5cff 45%, #e4c7ff 100%);
+  box-shadow:
+    0 18px 35px rgba(166, 102, 255, 0.34),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+
+  overflow: hidden;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    filter 0.28s ease;
+  animation: cvButtonFloat 3.8s ease-in-out infinite;
+}
+
+.cv-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.42) 45%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  animation: cvButtonShine 3.2s ease-in-out infinite;
+}
+
+.cv-button svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  padding: 0.22rem;
+  border-radius: 999px;
+  color: #9b5cff;
+  background: rgba(255, 255, 255, 0.92);
+  transition: transform 0.28s ease;
+}
+
+.cv-button:hover {
+  transform: translateY(-4px) scale(1.035);
+  filter: saturate(1.08);
+  box-shadow:
+    0 24px 48px rgba(166, 102, 255, 0.45),
+    0 0 28px rgba(218, 188, 255, 0.34),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+
+.cv-button:hover svg {
+  transform: translateX(4px);
+}
+
+@keyframes cvButtonFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes cvButtonShine {
+  0% {
+    transform: translateX(-120%);
+  }
+
+  45%,
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+/* Responsive */
+@media screen and (max-width: 640px) {
+  .hero-actions {
+    justify-content: center;
+    margin: 1.25rem 0 1rem;
+  }
+
+  .cv-button {
+    min-width: 8.8rem;
+    height: 2.95rem;
+    padding: 0 1.1rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+  }
+
+  .cv-button svg {
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+}
+
+/* =========================================================
+   BOTONES LINKEDIN + GITHUB - HERO INICIO
+========================================================= */
+
+.hero-social-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.hero-social-button {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+
+  height: 2.85rem;
+  padding: 0 1.15rem;
+  border-radius: 999px;
+
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(207, 169, 255, 0.28);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.18),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+
+  overflow: hidden;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease,
+    background 0.28s ease;
+}
+
+.hero-social-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.22) 45%,
+    transparent 72%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.65s ease;
+}
+
+.hero-social-button img {
+  width: 1.18rem;
+  height: 1.18rem;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.18));
+  transition: transform 0.28s ease;
+}
+
+.hero-social-button:hover {
+  transform: translateY(-4px);
+  border-color: rgba(213, 178, 255, 0.55);
+  background: rgba(185, 124, 255, 0.16);
+  box-shadow:
+    0 18px 38px rgba(159, 92, 255, 0.25),
+    0 0 26px rgba(198, 150, 255, 0.16),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.hero-social-button:hover::before {
+  transform: translateX(120%);
+}
+
+.hero-social-button:hover img {
+  transform: translateY(-2px) scale(1.08);
+}
+
+.hero-social-button.linkedin {
+  animation: socialFloatOne 3.6s ease-in-out infinite;
+}
+
+.hero-social-button.github {
+  animation: socialFloatTwo 3.9s ease-in-out infinite;
+}
+
+@keyframes socialFloatOne {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes socialFloatTwo {
+  0%,
+  100% {
+    transform: translateY(-2px);
+  }
+
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+/* Responsive */
+@media screen and (max-width: 640px) {
+  .hero-social-actions {
+    justify-content: center;
+    gap: 0.65rem;
+    margin-top: 1rem;
+  }
+
+  .hero-social-button {
+    height: 2.65rem;
+    padding: 0 0.9rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+  }
+
+  .hero-social-button img {
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .hero-social-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+
+  .hero-social-button {
+    width: 100%;
+    padding: 0 0.65rem;
+  }
+}
+
+
+/* =========================================================
+   IMAGEN PNG PERSONALIZADA HERO + MOVIMIENTO
+========================================================= */
+
+.portrait-custom-image {
+  position: absolute;
+  left: 50%;
+  bottom: -1.8rem;
+  z-index: 8;
+
+  width: min(34vw, 31rem);
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+
+  transform: translateX(-50%);
+  transform-origin: center bottom;
+
+  filter:
+    drop-shadow(0 28px 45px rgba(0, 0, 0, 0.35))
+    drop-shadow(0 0 28px rgba(177, 115, 255, 0.22));
+
+  animation: portraitPngFloat 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.portrait-custom-image:hover {
+  animation-play-state: paused;
+  transform: translateX(-50%) translateY(-10px) scale(1.025);
+  filter:
+    drop-shadow(0 34px 55px rgba(0, 0, 0, 0.42))
+    drop-shadow(0 0 38px rgba(190, 135, 255, 0.35));
+}
+
+/* Un brillo suave detrás de la imagen */
+.portrait-wrap::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 5rem;
+  z-index: 3;
+
+  width: 20rem;
+  height: 20rem;
+  border-radius: 999px;
+
+  background: radial-gradient(
+    circle,
+    rgba(180, 118, 255, 0.18),
+    rgba(180, 118, 255, 0.06) 45%,
+    transparent 70%
+  );
+
+  transform: translateX(-50%);
+  pointer-events: none;
+  animation: portraitGlowPulse 4.5s ease-in-out infinite;
+}
+
+@keyframes portraitPngFloat {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0) rotateZ(0deg);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-12px) rotateZ(-0.5deg);
+  }
+}
+
+@keyframes portraitGlowPulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: translateX(-50%) scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+
+/* Ajuste en pantallas medianas */
+@media screen and (max-width: 1450px) {
+  .portrait-custom-image {
+    width: min(33vw, 27rem);
+    bottom: -1.2rem;
+  }
+}
+
+/* Si en tablet quieres que se vea */
+@media screen and (max-width: 980px) {
+  .portrait-custom-image {
+    width: min(72vw, 24rem);
+    bottom: -1rem;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE IMAGEN PNG HERO
+   Mantiene los círculos y adapta la imagen personalizada
+========================================================= */
+
+/* Tablet / laptop pequeña */
+@media screen and (max-width: 1180px) {
+  .portrait-wrap {
+    display: block !important;
+    width: 100% !important;
+    min-height: 32rem !important;
+    overflow: hidden !important;
+  }
+
+  .portrait-custom-image {
+    width: min(58vw, 25rem) !important;
+    bottom: -0.8rem !important;
+  }
+
+  .portrait-halo {
+    width: min(58vw, 17rem) !important;
+    height: min(58vw, 17rem) !important;
+  }
+
+  .orbit-one {
+    width: min(82vw, 25rem) !important;
+    height: min(82vw, 25rem) !important;
+  }
+
+  .orbit-two {
+    width: min(68vw, 20rem) !important;
+    height: min(68vw, 20rem) !important;
+  }
+
+  .orbit-three {
+    width: min(52vw, 15rem) !important;
+    height: min(52vw, 15rem) !important;
+  }
+}
+
+/* Celular */
+@media screen and (max-width: 640px) {
+  .portrait-wrap {
+    display: block !important;
+    width: 100% !important;
+    min-height: 21rem !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
+  }
+
+  .portrait-custom-image {
+    width: min(82vw, 19rem) !important;
+    bottom: -0.45rem !important;
+    animation: portraitPngFloatMobile 4.5s ease-in-out infinite !important;
+  }
+
+  .portrait-halo {
+    width: min(68vw, 13rem) !important;
+    height: min(68vw, 13rem) !important;
+  }
+
+  .orbit-one {
+    width: min(88vw, 19rem) !important;
+    height: min(88vw, 19rem) !important;
+  }
+
+  .orbit-two {
+    width: min(72vw, 15.5rem) !important;
+    height: min(72vw, 15.5rem) !important;
+  }
+
+  .orbit-three {
+    width: min(56vw, 12rem) !important;
+    height: min(56vw, 12rem) !important;
+  }
+
+  .orbit-dot.one,
+  .orbit-dot.two {
+    transform: scale(0.75) !important;
+  }
+
+  .portrait-wrap::after {
+    width: 13rem !important;
+    height: 13rem !important;
+    bottom: 3.5rem !important;
+  }
+}
+
+/* Celular pequeño */
+@media screen and (max-width: 420px) {
+  .portrait-wrap {
+    min-height: 19rem !important;
+  }
+
+  .portrait-custom-image {
+    width: min(84vw, 16.8rem) !important;
+    bottom: -0.3rem !important;
+  }
+
+  .portrait-halo {
+    width: min(66vw, 11.5rem) !important;
+    height: min(66vw, 11.5rem) !important;
+  }
+
+  .orbit-one {
+    width: min(86vw, 17rem) !important;
+    height: min(86vw, 17rem) !important;
+  }
+
+  .orbit-two {
+    width: min(70vw, 14rem) !important;
+    height: min(70vw, 14rem) !important;
+  }
+
+  .orbit-three {
+    width: min(54vw, 10.5rem) !important;
+    height: min(54vw, 10.5rem) !important;
+  }
+}
+
+/* Movimiento más suave en celular */
+@keyframes portraitPngFloatMobile {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-7px) scale(1.015);
+  }
+}
+
+
+/* =========================================================
+   FIX MOBILE IMAGEN HERO - NO CORTAR + MANTENER MOVIMIENTO
+========================================================= */
+
+@media screen and (max-width: 640px) {
+  .hero-layout,
+  .hero-copy,
+  .portrait-wrap {
+    overflow: visible !important;
+  }
+
+  .portfolio-page {
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+  }
+
+  .hero-social-actions {
+    position: relative;
+    z-index: 20;
+    margin-bottom: 1.4rem !important;
+  }
+
+  .portrait-wrap {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    min-height: 25.5rem !important;
+    margin-top: 0.4rem !important;
+    margin-bottom: 1.5rem !important;
+    overflow: visible !important;
+    z-index: 5;
+  }
+
+  .portrait-custom-image {
+    position: absolute !important;
+    left: 50% !important;
+    bottom: 0 !important;
+
+    width: min(84vw, 20.5rem) !important;
+    max-width: 100% !important;
+    height: auto !important;
+
+    transform: translateX(-50%) translateY(0) !important;
+    animation: portraitPngFloatMobileSafe 4.8s ease-in-out infinite !important;
+    will-change: transform;
+    z-index: 10;
+
+    filter:
+      drop-shadow(0 22px 34px rgba(0, 0, 0, 0.32))
+      drop-shadow(0 0 24px rgba(177, 115, 255, 0.22));
+  }
+
+  .portrait-halo,
+  .orbit,
+  .orbit-one,
+  .orbit-two,
+  .orbit-three,
+  .orbit-dot {
+    z-index: 1;
+  }
+
+  .portrait-wrap::after {
+    z-index: 0;
+    bottom: 4.5rem !important;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .portrait-wrap {
+    min-height: 23.5rem !important;
+    margin-bottom: 1.2rem !important;
+  }
+
+  .portrait-custom-image {
+    width: min(86vw, 18rem) !important;
+    bottom: 0.2rem !important;
+  }
+}
+
+@keyframes portraitPngFloatMobileSafe {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-8px) scale(1.015);
+  }
+}
