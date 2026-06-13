@@ -266,7 +266,7 @@ function HeroContent() {
       <div className="hero-actions">
         <a
           className="cv-button"
-          href="https://drive.google.com/file/d/124rj9yEoRF6YVoXyf4Vg_0JEsqDj6m_9/view?usp=sharing"
+          href="https://drive.google.com/file/d/15LiWDux3aCI9PO27ujiZONiZTLkxQBV3/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
         >
