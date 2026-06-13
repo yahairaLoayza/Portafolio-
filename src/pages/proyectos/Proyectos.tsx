@@ -110,7 +110,7 @@ const projects = [
       'Landing page profesional para presentación personal, proyectos y experiencia.',
     category: 'UX/UI',
     tags: ['UI Design', 'React', 'Portfolio'],
-    link: '#',
+    link: 'https://portafolio-psi-azure-16.vercel.app/',
     image: '/proyectos/pagina.png',
   },
   {
@@ -261,7 +261,7 @@ function ProyectosHeader() {
 
       <a
         className="projects-cv-button"
-        href="AQUI_PEGA_EL_LINK_DE_TU_CV"
+        href="https://drive.google.com/file/d/124rj9yEoRF6YVoXyf4Vg_0JEsqDj6m_9/view?usp=sharing"
         target="_blank"
         rel="noopener noreferrer"
       >
