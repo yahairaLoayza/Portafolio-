@@ -261,7 +261,7 @@ function ProyectosHeader() {
 
       <a
         className="projects-cv-button"
-        href="https://drive.google.com/file/d/15LiWDux3aCI9PO27ujiZONiZTLkxQBV3/view?usp=sharing"
+        href="https://drive.google.com/file/d/1mdkBhMMlscVyofMXrGoqACFt9Od_kjc7/view?usp=sharing"
         target="_blank"
         rel="noopener noreferrer"
       >
